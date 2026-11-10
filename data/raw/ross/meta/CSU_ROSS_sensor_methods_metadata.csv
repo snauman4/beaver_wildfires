@@ -1,0 +1,10 @@
+﻿parameter,units,sensor,calibration_method,Notes
+Specific Conductivity,μS/cm at 25  degrees C,Aqua TROLL Temperature-Conductivity Sensor,Pre-2024: One point with 1413 μS/cm 2024 onwards: Two-point with either DI (0.1 μS/cm) and 147 μS/cmstandard or 147 μS/cm and 1413  μS/cm depending on site range. ,
+Temperature,degrees C,Aqua TROLL Temperature-Conductivity Sensor,Annual Factory Calibration,Stream morphology (ie. pool vs riffle) and shading patterns may affect readings
+pH,pH,Aqua TROLL pH / ORP Sensor,"Three-point with 4,7,10 buffer standards",
+ORP,V,Aqua TROLL pH / ORP Sensor,One-point calibration using Zobell's ORP/Redox Calibration Solution (229 mV at 25 degrees C),
+RDO,mg/L,Aqua TROLL RDO Sensor,100 % saturation in-air calibration using wetted sponge,Stream morphology (ie. pool vs riffle) and shading patterns may affect readings
+Turbidity,NTU,Aqua TROLL Turbidity Sensor,Two-point calibration using 10 NTU and 100 NTU standards,
+FDOM Fluorescence,RFU,Aqua TROLL FDOM Sensor,One-point calibration using solid state calibration block (8.25 RFU),
+Chl-a Fluorescence,RFU,Aqua TROLL Chlorophyll a Sensor,"Yearly two-point calibration of sensor using DI (0 RFU) and rhodamine dye (500 μg/L, 2.9 RFU) ",
+Depth,m,Aqua TROLL and/or Vulink,"If AquaTROLL only, depth is calibrated using onboard barometric pressure sensor to in air conditions. If AquaTroll and Vulink are deployed together, VuLink Barometric Pressure compensation is applied",Sensor Housing shifts or bank changes are not accounted for in this dataset and depth is relative to current site conditions

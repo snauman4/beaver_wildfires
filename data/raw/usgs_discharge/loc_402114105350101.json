@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "USGS-402114105350101",
+        "agency_code": "USGS",
+        "agency_name": "U.S. Geological Survey",
+        "monitoring_location_number": "402114105350101",
+        "monitoring_location_name": "BIG THOMPSON BL MORAINE PARK NR ESTES PARK, CO",
+        "district_code": "08",
+        "country_code": "US",
+        "country_name": "United States of America",
+        "state_code": "08",
+        "state_name": "Colorado",
+        "county_code": "069",
+        "county_name": "Larimer County",
+        "minor_civil_division_code": "91235",
+        "site_type_code": "ST",
+        "site_type": "Stream",
+        "hydrologic_unit_code": "101900060202",
+        "basin_code": null,
+        "altitude": 7999.0,
+        "altitude_accuracy": 1.6,
+        "altitude_method_code": "N",
+        "altitude_method_name": "Interpolated from Digital Elevation Model",
+        "vertical_datum": "NAVD88",
+        "vertical_datum_name": "North American Vertical Datum of 1988",
+        "horizontal_positional_accuracy_code": "S",
+        "horizontal_positional_accuracy": "Accurate to + or - 1 sec.",
+        "horizontal_position_method_code": "N",
+        "horizontal_position_method_name": "Interpolated from Digital MAP.",
+        "original_horizontal_datum": "NAD83",
+        "original_horizontal_datum_name": "North American Datum of 1983",
+        "drainage_area": 39.8,
+        "contributing_drainage_area": null,
+        "time_zone_abbreviation": "MST",
+        "uses_daylight_savings": "Y",
+        "construction_date": null,
+        "aquifer_code": null,
+        "national_aquifer_code": null,
+        "aquifer_type_code": null,
+        "well_constructed_depth": null,
+        "hole_constructed_depth": null,
+        "depth_source_code": null,
+        "revision_note": null,
+        "revision_created": null,
+        "revision_modified": null
+      },
+      "id": "USGS-402114105350101",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.584138888889,
+          40.3538611111111
+        ]
+      }
+    }
+  ],
+  "numberReturned": 1,
+  "links": [
+    {
+      "type": "application/geo+json",
+      "rel": "self",
+      "title": "This document as GeoJSON",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-402114105350101"
+    },
+    {
+      "rel": "alternate",
+      "type": "application/ld+json",
+      "title": "This document as RDF (JSON-LD)",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-402114105350101"
+    },
+    {
+      "type": "text/html",
+      "rel": "alternate",
+      "title": "This document as HTML",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-402114105350101"
+    },
+    {
+      "type": "text/csv; charset=utf-8",
+      "rel": "alternate",
+      "title": "This document as CSV",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-402114105350101"
+    },
+    {
+      "type": "application/json",
+      "title": "Monitoring locations",
+      "rel": "collection",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations"
+    }
+  ],
+  "timeStamp": "2026-10-20T20:53:37.169340Z"
+}

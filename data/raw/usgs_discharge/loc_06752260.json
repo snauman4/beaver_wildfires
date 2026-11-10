@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "USGS-06752260",
+        "agency_code": "USGS",
+        "agency_name": "U.S. Geological Survey",
+        "monitoring_location_number": "06752260",
+        "monitoring_location_name": "CACHE LA POUDRE RIVER AT FORT COLLINS, CO",
+        "district_code": "08",
+        "country_code": "US",
+        "country_name": "United States of America",
+        "state_code": "08",
+        "state_name": "Colorado",
+        "county_code": "069",
+        "county_name": "Larimer County",
+        "minor_civil_division_code": "91330",
+        "site_type_code": "ST",
+        "site_type": "Stream",
+        "hydrologic_unit_code": "101900070805",
+        "basin_code": "06",
+        "altitude": 4937.57,
+        "altitude_accuracy": 0.07,
+        "altitude_method_code": "X",
+        "altitude_method_name": "GNSS2 - Level 2 Quality Survey Grade Global Navigation Satellite System",
+        "vertical_datum": "NAVD88",
+        "vertical_datum_name": "North American Vertical Datum of 1988",
+        "horizontal_positional_accuracy_code": "5",
+        "horizontal_positional_accuracy": "Accurate to + or - .5 sec (PLGR/PPS GPS).",
+        "horizontal_position_method_code": "N",
+        "horizontal_position_method_name": "Interpolated from digital map",
+        "original_horizontal_datum": "NAD83",
+        "original_horizontal_datum_name": "North American Datum of 1983",
+        "drainage_area": 1128.0,
+        "contributing_drainage_area": null,
+        "time_zone_abbreviation": "MST",
+        "uses_daylight_savings": "Y",
+        "construction_date": null,
+        "aquifer_code": null,
+        "national_aquifer_code": null,
+        "aquifer_type_code": null,
+        "well_constructed_depth": null,
+        "hole_constructed_depth": null,
+        "depth_source_code": null,
+        "revision_note": "&lt;p&gt;&lt;span style=\"font-family: 'Segoe UI', sans-serif;\"&gt;WDR-US-2011: Drainage area. September 2022: Gage height and discharge for the period Oct. 7, 2021, to Mar. 25, 2022, were revised on Sept. 23, 2022, based on changes to the gage datum. August 2023: Gage height and discharge for the period Jan. 31, 2023, to July 12, 2023, were revised on Aug. 23, 2023, based on changes to the gage datum. October 2024: Gage height and discharge for the period Jan. 3, 2024, to June 11, 2024, were revised on Oct. 3, 2024, based on changes to the primary reference gage found during levels (9/17/2024).&lt;/span&gt;&lt;/p&gt;",
+        "revision_created": "2017-11-13T06:00:00+00:00",
+        "revision_modified": "2025-01-08T19:27:08.913000+00:00"
+      },
+      "id": "USGS-06752260",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.069222,
+          40.588083
+        ]
+      }
+    }
+  ],
+  "numberReturned": 1,
+  "links": [
+    {
+      "type": "application/geo+json",
+      "rel": "self",
+      "title": "This document as GeoJSON",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-06752260"
+    },
+    {
+      "rel": "alternate",
+      "type": "application/ld+json",
+      "title": "This document as RDF (JSON-LD)",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-06752260"
+    },
+    {
+      "type": "text/html",
+      "rel": "alternate",
+      "title": "This document as HTML",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-06752260"
+    },
+    {
+      "type": "text/csv; charset=utf-8",
+      "rel": "alternate",
+      "title": "This document as CSV",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-06752260"
+    },
+    {
+      "type": "application/json",
+      "title": "Monitoring locations",
+      "rel": "collection",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations"
+    }
+  ],
+  "timeStamp": "2026-10-20T20:53:30.058802Z"
+}

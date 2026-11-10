@@ -1,0 +1,693 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poudre Beaver Fire</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Instrument+Serif&display=swap">
+<style>
+:root{
+  --bg:#eaeeec; --surface:#fafbfa; --border:#d3dad6; --text:#16201b; --dim:#56625b;
+  --accent:#0d6b58; --accent-ink:#ffffff; --chip:#e1e8e4;
+  --ground:#dde4e0; --land:#f4f6f3; --ws-edge:#7d8c84; --stream:#6a8aa3; --casing:#f4f6f3;
+  --dot:#eafff0; --tq0:#16a34a; --tq1:#9aa62a; --tq2:#7a4a1d; --tq3:#140c07; --tcase:#f4f6f3;
+  --fire-hot:#ffb02e; --fire-mid:#ff5a1f; --fire-red:#c42318; --fire-old:#8a1414; --fire-scar:#5e1616;
+  --beaver:#8a5527; --beaver-edge:#fbf6ee; --burn-ring:#e8590c;
+  --tb-lo:#e4dcf6; --tb-hi:#3a1472; --flow:#1f6fb8; --band:rgba(232,89,12,.10);
+  --label:#2d3a33; --halo:rgba(250,251,250,.85); --grid:#d9dfdb;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c1110; --surface:#141b19; --border:#25312d; --text:#e8efec; --dim:#8d9b94;
+    --accent:#4cc9ae; --accent-ink:#06231c; --chip:#1d2825;
+    --ground:#0f1514; --land:#182120; --ws-edge:#4d5f57; --stream:#4f7189; --casing:#182120;
+    --dot:#e8fff0; --tq0:#3fd97a; --tq1:#b9b83a; --tq2:#8a5a2e; --tq3:#0b0705; --tcase:#b4beb7;
+    --fire-hot:#ffc24a; --fire-mid:#ff6a2b; --fire-red:#d93a26; --fire-old:#9c1e1a; --fire-scar:#661d1b;
+    --beaver:#c98a4b; --beaver-edge:#1a120a; --burn-ring:#ff8a3d;
+    --tb-lo:#463b6e; --tb-hi:#d9bcff; --flow:#5aa9ff; --band:rgba(255,106,43,.13);
+    --label:#c9d6cf; --halo:rgba(24,33,32,.85); --grid:#26322e;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c1110; --surface:#141b19; --border:#25312d; --text:#e8efec; --dim:#8d9b94;
+  --accent:#4cc9ae; --accent-ink:#06231c; --chip:#1d2825;
+  --ground:#0f1514; --land:#182120; --ws-edge:#4d5f57; --stream:#4f7189; --casing:#182120;
+  --dot:#e8fff0; --tq0:#3fd97a; --tq1:#b9b83a; --tq2:#8a5a2e; --tq3:#0b0705; --tcase:#b4beb7;
+  --fire-hot:#ffc24a; --fire-mid:#ff6a2b; --fire-red:#d93a26; --fire-old:#9c1e1a; --fire-scar:#661d1b;
+  --beaver:#c98a4b; --beaver-edge:#1a120a; --burn-ring:#ff8a3d;
+  --tb-lo:#463b6e; --tb-hi:#d9bcff; --flow:#5aa9ff; --band:rgba(255,106,43,.13);
+  --label:#c9d6cf; --halo:rgba(24,33,32,.85); --grid:#26322e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;
+  padding-inline:16px;padding-block:16px 40px}
+.wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+header{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline;justify-content:space-between}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(1.9rem,4vw,2.7rem);margin:0;line-height:1.05;text-wrap:balance}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:1.6rem;margin:0 0 4px}
+.sub{color:var(--dim);font-size:.9rem;max-width:62ch;margin:0}
+.stage{position:relative;background:var(--ground);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  height:clamp(380px,62vh,680px);touch-action:none}
+canvas#map{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+canvas#map.drag{cursor:grabbing}
+.hud{position:absolute;left:14px;top:12px;pointer-events:none;display:flex;flex-direction:column;gap:2px;
+  text-shadow:0 0 10px var(--ground),0 0 3px var(--ground)}
+.hud .date{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(1.8rem,4.4vw,3rem);line-height:1}
+.hud .acres{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--dim)}
+.hud .acres b{color:var(--text);font-weight:500}
+.zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--surface);
+  color:var(--text);font-size:1.1rem;cursor:pointer}
+.zoom button:hover{background:var(--chip)}
+.scale{position:absolute;left:14px;bottom:12px;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--dim);pointer-events:none}
+.scale i{display:block;height:5px;border:1.5px solid var(--dim);border-top:none;margin-bottom:3px}
+.tip{position:absolute;pointer-events:none;background:var(--surface);color:var(--text);border:1px solid var(--border);
+  border-radius:10px;padding:9px 11px;font-size:.78rem;max-width:270px;box-shadow:0 6px 24px rgba(0,0,0,.25);display:none;line-height:1.4;z-index:3}
+.tip b{font-weight:600}.tip .m{color:var(--dim)}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.transport{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.play{min-width:84px;height:38px;border-radius:19px;border:0;background:var(--accent);color:var(--accent-ink);
+  font:600 .88rem 'DM Sans',sans-serif;cursor:pointer;padding:0 16px}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select{height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:0 8px;font:500 .84rem 'DM Sans',sans-serif}
+.track{flex:1 1 320px;min-width:220px;position:relative;padding-top:2px}
+input[type=range]{width:100%;margin:0;accent-color:var(--accent);height:26px}
+.ticks{position:relative;height:18px;margin-top:-2px}
+.ticks span{position:absolute;top:0;width:1px;height:6px;background:var(--fire-mid);opacity:.8}
+.ticks span.big{height:11px;width:2px;opacity:1}
+.ticks span.yr{background:var(--dim);height:8px;opacity:.7}
+.ticks em{position:absolute;top:8px;font:500 .64rem 'DM Mono',monospace;color:var(--dim);font-style:normal;transform:translateX(-50%);white-space:nowrap}
+.cap{margin:10px 0 0;font-size:.9rem;min-height:2.6em;text-wrap:pretty}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:999px;padding:5px 11px;
+  font:500 .76rem 'DM Sans',sans-serif;cursor:pointer}
+.chip:hover{border-color:var(--fire-mid)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.stat .n{font-family:'DM Mono',monospace;font-size:1.35rem;font-weight:500;font-variant-numeric:tabular-nums}
+.stat .l{font-size:.72rem;color:var(--dim);margin-top:2px;line-height:1.35}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.8rem}
+.legend label{display:flex;gap:7px;align-items:center;cursor:pointer;color:var(--dim)}
+.legend input{accent-color:var(--accent)}
+.legend label:has(input:checked){color:var(--text)}
+.bar{display:inline-block;width:90px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--tq0),var(--tq1),var(--tq2),var(--tq3));border:1px solid var(--border)}
+.fbar{display:inline-block;width:80px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--fire-hot),var(--fire-mid),var(--fire-red),var(--fire-scar))}
+.dia{display:inline-block;width:10px;height:10px;background:var(--tq2);transform:rotate(45deg);border:1px solid var(--label)}
+.rng{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid var(--flow)}
+.note{font-size:.76rem;color:var(--dim);line-height:1.5;max-width:110ch;margin:0}
+.note b{color:var(--text);font-weight:600}
+/* measurements panel */
+.mhead{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.tabs{display:flex;gap:4px;background:var(--chip);border-radius:10px;padding:3px}
+.tabs button{border:0;background:transparent;color:var(--dim);font:600 .82rem 'DM Sans',sans-serif;padding:7px 14px;border-radius:8px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.mtitle{font-size:.82rem;color:var(--dim)}
+.chartbox{position:relative;height:290px}
+canvas#chart{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;touch-action:none}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 6px;align-items:center}
+.presets .lab{font-size:.72rem;color:var(--dim);margin-right:2px}
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 12px;margin-top:6px}
+.pick label{display:flex;align-items:center;gap:7px;font-size:.78rem;cursor:pointer;padding:3px 0;min-width:0}
+.pick label span.nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick input{accent-color:var(--accent);flex:none}
+.sw{width:10px;height:10px;border-radius:3px;flex:none}
+.read{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:10px}
+.read div{border:1px solid var(--border);border-radius:10px;padding:7px 10px;font-size:.76rem;line-height:1.35}
+.read b{font-family:'DM Mono',monospace;font-weight:500;font-size:.95rem;font-variant-numeric:tabular-nums;display:block}
+.read .n{color:var(--dim)}
+.toggle{display:flex;gap:6px;align-items:center;font-size:.78rem;color:var(--dim)}
+/* variables guide */
+details.guide>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:10px}
+details.guide>summary::-webkit-details-marker{display:none}
+details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--dim);margin-left:auto}
+.guide-intro{font-size:.86rem;color:var(--dim);max-width:80ch;margin:4px 0 14px}
+.grp{font:600 .72rem 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:18px 0 8px}
+.vars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:10px}
+.var{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.var h3{margin:0 0 2px;font:500 .95rem 'DM Mono',monospace}
+.var .plain{font-size:.85rem;margin:0 0 8px;text-wrap:pretty}
+.var dl{margin:0;display:grid;grid-template-columns:78px 1fr;gap:3px 10px;font-size:.76rem}
+.var dt{color:var(--dim)}.var dd{margin:0;text-wrap:pretty}
+.var dd.warn{color:var(--text)}
+.var .tag{display:inline-block;font:600 .64rem 'DM Mono',monospace;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle;letter-spacing:.04em}
+.tag.real{background:var(--accent);color:var(--accent-ink)}
+.tag.derived{background:var(--chip);color:var(--text);border:1px solid var(--border)}
+.tag.model{background:transparent;color:var(--text);border:1px dashed var(--fire-mid)}
+@media (max-width:640px){.hint{display:none}}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Poudre Beaver Fire</h1>
+    <p class="sub">Beaver records on the Cache la Poudre, the Cameron Peak Fire burning through the watershed in 2020, and the measured river turbidity and streamflow through 2025.</p>
+  </header>
+
+  <div class="stage" id="stage">
+    <canvas id="map" aria-label="Animated map of the Cache la Poudre watershed" role="img"></canvas>
+    <div class="hud"><div class="date" id="hudDate">Aug 1, 2020</div><div class="acres" id="hudAcres"></div></div>
+    <div class="zoom">
+      <button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">&minus;</button>
+      <button id="zfit" aria-label="Reset view" style="font-size:.7rem">fit</button>
+    </div>
+    <div class="scale" id="scale"></div>
+    <div class="scale hint" style="left:auto;right:14px;bottom:12px;text-align:right">drag to pan &middot; Ctrl/&#8984; + scroll or +/&minus; to zoom &middot; click a marker</div>
+    <div class="tip" id="tip"></div>
+  </div>
+
+  <div class="panel">
+    <div class="transport">
+      <button class="play" id="play">Play</button>
+      <select id="speed" aria-label="Playback speed">
+        <option value="0.5">0.5&times;</option><option value="1" selected>1&times;</option>
+        <option value="2">2&times;</option><option value="4">4&times;</option>
+      </select>
+      <div class="track">
+        <input type="range" id="scrub" min="0" max="1000" step="1" value="0" aria-label="Date">
+        <div class="ticks" id="ticks"></div>
+      </div>
+    </div>
+    <p class="cap" id="cap"></p>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="panel" id="measure">
+    <div class="mhead">
+      <div class="tabs" role="tablist" aria-label="Measured variable">
+        <button role="tab" id="tabTur" aria-selected="true">Turbidity</button>
+        <button role="tab" id="tabQ" aria-selected="false">Discharge</button>
+      </div>
+      <div class="mtitle" id="mtitle"></div>
+      <label class="toggle" id="maxWrap"><input type="checkbox" id="showMax"> show daily max</label>
+    </div>
+    <div class="chartbox"><canvas id="chart" aria-label="Measured time series with a cursor at the animation date" role="img"></canvas></div>
+    <div class="presets" id="presets"></div>
+    <div class="pick" id="pick"></div>
+    <div class="read" id="read"></div>
+  </div>
+
+  <div class="row" id="stats"></div>
+
+  <div class="panel">
+    <div class="legend" id="legend">
+      <label><input type="checkbox" id="lFire" checked><span>Burned area</span><i class="fbar"></i></label>
+      <label><input type="checkbox" id="lStream" checked><span>River turbidity: clear</span><i class="bar"></i><span>murky</span></label>
+      <label><input type="checkbox" id="lDam" checked><span>Dam records</span></label>
+      <label><input type="checkbox" id="lSight" checked><span>Beaver sightings</span></label>
+      <label><input type="checkbox" id="lSens" checked><i class="dia"></i><span>Turbidity sensors</span></label>
+      <label><input type="checkbox" id="lGauge" checked><i class="rng"></i><span>USGS discharge gauges</span></label>
+      <label><input type="checkbox" id="lLab" checked><span>Labels</span></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <details class="guide" open>
+      <summary><h2>What each variable means</h2></summary>
+      <p class="guide-intro">Every quantity on this page, where it comes from, and how much weight it can bear. Tags: <span class="tag real">MEASURED OR MAPPED</span> comes from an agency or research dataset; <span class="tag derived">DERIVED</span> computed from those data here. Nothing on the page is a made-up model value.</p>
+      <div id="guideBody"></div>
+    </details>
+  </div>
+
+  <p class="note" id="note"></p>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const PN = /*PANEL*/null;
+
+/* ---------- geometry helpers ---------- */
+const LON0 = -105.3, KX = Math.cos(40.75 * Math.PI / 180);
+const wx = lon => (lon - LON0) * KX, wy = lat => lat;
+const T0 = Date.UTC(2020, 7, 1), DAY = 86400000;
+const dayOf = s => (Date.parse(s + 'T00:00:00Z') - T0) / DAY;
+const dateOf = d => new Date(T0 + Math.floor(d) * DAY);
+const fmt = d => dateOf(d).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'});
+const fmtS = d => dateOf(d).toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'UTC'});
+const nf = n => Math.round(n).toLocaleString('en-US');
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+/* ---------- shared time axis: the fire season gets an expanded stretch ---------- */
+const T_PRE = dayOf(PN.win[0]), T_END = dayOf(PN.win[1]), T_FIRE_END = dayOf('2020-12-02'), T_BURN_START = dayOf('2020-08-13');
+const W_PRE = 0.15, W_A = 0.38, W_B = 0.62;
+const pOf = t => t < 0 ? W_PRE * t / -T_PRE : t <= T_FIRE_END ? W_A * t / T_FIRE_END : W_A + W_B * (t - T_FIRE_END) / (T_END - T_FIRE_END);
+const tOf = p => p < 0 ? -p * -T_PRE / W_PRE : p <= W_A ? p / W_A * T_FIRE_END : T_FIRE_END + (p - W_A) / W_B * (T_END - T_FIRE_END);
+
+const toRing = flat => { const n = flat.length / 2, a = new Float64Array(n * 2);
+  for (let i = 0; i < n; i++) { a[2*i] = wx(flat[2*i]); a[2*i+1] = wy(flat[2*i+1]); } return a; };
+
+const WS = DATA.watershed.map(p => p.map(toRing));
+const FIRE = DATA.fire.map(f => ({ t: dayOf(f.d), ac: f.ac, kind: f.kind, d: f.d, polys: f.g.map(p => p.map(toRing)) }));
+const STREAMS = DATA.streams.map(s => {
+  const xy = toRing(s.c), n = xy.length / 2, cum = new Float64Array(n);
+  for (let i = 1; i < n; i++) cum[i] = cum[i-1] + Math.hypot(xy[2*i]-xy[2*i-2], xy[2*i+1]-xy[2*i-1]);
+  return { name: s.n, o: s.o, xy, n, cum, len: cum[n-1], tval: new Float32Array(n), covNow: new Float32Array(n) };
+});
+const SITES = DATA.sites.map(s => ({ ...s, x: wx(s.lon), y: wy(s.lat), burnT: s.burn ? dayOf(s.burn) : Infinity }));
+const sitesBurnSorted = SITES.map(s => s.burnT).filter(isFinite).sort((a,b) => a-b);
+
+/* ---------- measured series ---------- */
+const PAL = ['#1f77b4','#2a9d8f','#7b5ea7','#c0398f','#8c6d31','#3f8f3f','#d99a1e','#5c6bc0','#0b7285','#b5651d','#6b7280','#9c4f96','#2f6f4f','#a05252','#3b6ea8','#7a8f2a','#b07a9e','#44858a'];
+const mk = (arr, kind) => arr.map((s, i) => ({ kind, id: s.id, name: s.name, desc: s.desc || s.full, x: wx(s.lon), y: wy(s.lat), t0: s.t0,
+  v: s.med || s.cfs, mx: s.max || null, burn: s.burn_pct, basin: s.basin_km2, da: s.da_km2, color: PAL[i % PAL.length], on: false }));
+const ROSS = mk(PN.ross, 'tur'), USGS = mk(PN.usgs, 'q');
+const valAt = (s, day, arr = s.v) => { const i = day - s.t0; if (i < 0 || i >= arr.length) return null; const v = arr[i]; return v == null ? null : v; };
+const PRESETS = {
+  tur: [['Lower river, Fort Collins reach', ['salyer','riverbend','bellvue','cottonwood','elc']],
+        ['Burned vs unburned control (2024)', ['lbea','penn']],
+        ['Canyon and upstream', ['pfal','pbr','pman','pbd','sfm','chd']],
+        ['All sensors', null]],
+  q:   [['Poudre mainstem', ['USGS-06752260','USGS-06752280']],
+        ['North Fork', ['USGS-06751490','USGS-06751150','USGS-06751145']],
+        ['Burn-area headwaters', ['USGS-06746110','USGS-06746095','USGS-06614800']],
+        ['Big Thompson', ['USGS-06741510','USGS-402114105350101']],
+        ['All gauges', null]] };
+const DEFAULT_SEL = { tur: ['salyer','riverbend','bellvue','cottonwood','elc'], q: ['USGS-06752260','USGS-06751490'] };
+ROSS.forEach(s => s.on = DEFAULT_SEL.tur.includes(s.id)); USGS.forEach(s => s.on = DEFAULT_SEL.q.includes(s.id));
+
+// labels: longest reach of each named order>=5 stream, plus two towns
+const LABELS = [];
+{ const best = {};
+  STREAMS.forEach(s => { if (s.name && s.o >= 5 && (!best[s.name] || s.len > best[s.name].len)) best[s.name] = s; });
+  Object.values(best).forEach(s => { const i = s.n >> 1; LABELS.push({ t: s.name.replace(' River',''), x: s.xy[2*i], y: s.xy[2*i+1], kind: 'river' }); });
+  [['Fort Collins', 40.5853, -105.0844], ['Greeley', 40.4233, -104.7091]].forEach(([t, la, lo]) => LABELS.push({ t, x: wx(lo), y: wy(la), kind: 'town' }));
+}
+
+const GROW = FIRE.map((f, k) => ({ k, g: k ? f.ac - FIRE[k-1].ac : f.ac }));
+const TOP = GROW.slice(1).sort((a, b) => b.g - a.g).slice(0, 5).sort((a, b) => a.k - b.k);
+
+/* ---------- theme ---------- */
+let C = {};
+const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function hex(h) { h = h.replace('#',''); if (h.length === 3) h = h.split('').map(c => c+c).join(''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)); }
+const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i]-v)*t));
+const rgb = (c, a=1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+const readTheme = () => { ['ground','land','ws-edge','stream','casing','tcase','tq0','tq1','tq2','tq3','dot','fire-hot','fire-mid','fire-red','fire-old','fire-scar',
+  'beaver','beaver-edge','burn-ring','label','halo','flow','grid','band','dim','text','surface','border'].forEach(k => C[k] = cssv('--' + k)); C.rgb = {};
+  ['tq0','tq1','tq2','tq3','fire-hot','fire-mid','fire-red','fire-old','fire-scar'].forEach(k => C.rgb[k] = hex(C[k])); dirty.streams = dirty.fire = dirty.chart = dirty.turb = true; };
+
+/* ---------- canvas / view ---------- */
+const stage = document.getElementById('stage'), cv = document.getElementById('map'), ctx = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1, view = { cx: 0, cy: 0, s: 1 }, fitS = 1;
+const dirty = { streams: true, fire: true, paths: true, chart: true, turb: true };
+const layers = { streams: document.createElement('canvas'), fire: document.createElement('canvas'), turb: document.createElement('canvas') };
+let bbox = { x0: 1e9, y0: 1e9, x1: -1e9, y1: -1e9 };
+WS.forEach(p => p.forEach(r => { for (let i = 0; i < r.length; i += 2) { bbox.x0 = Math.min(bbox.x0, r[i]); bbox.x1 = Math.max(bbox.x1, r[i]);
+  bbox.y0 = Math.min(bbox.y0, r[i+1]); bbox.y1 = Math.max(bbox.y1, r[i+1]); } }));
+function fit() { view.cx = (bbox.x0 + bbox.x1) / 2; view.cy = (bbox.y0 + bbox.y1) / 2;
+  fitS = Math.min(W / (bbox.x1 - bbox.x0), H / (bbox.y1 - bbox.y0)) * 0.9; view.s = fitS; markDirty(); }
+function resize() { const r = stage.getBoundingClientRect(); W = r.width; H = r.height; DPR = Math.min(window.devicePixelRatio || 1, 2);
+  [cv, layers.streams, layers.fire, layers.turb].forEach(c => { c.width = Math.round(W * DPR); c.height = Math.round(H * DPR); });
+  if (!view.s || view.s === 1) fit(); else markDirty(); }
+function markDirty() { dirty.streams = dirty.fire = dirty.paths = dirty.turb = true; }
+const SX = X => (X - view.cx) * view.s + W / 2, SY = Y => H / 2 - (Y - view.cy) * view.s;
+const WXs = x => (x - W / 2) / view.s + view.cx, WYs = y => (H / 2 - y) / view.s + view.cy;
+
+let wsPath = null; const ringPath = [];
+function pathOf(polys) { const p = new Path2D();
+  polys.forEach(poly => poly.forEach(r => { for (let i = 0; i < r.length; i += 2) { const x = SX(r[i]), y = SY(r[i+1]); i ? p.lineTo(x, y) : p.moveTo(x, y); } p.closePath(); }));
+  return p; }
+function rebuildPaths() { wsPath = pathOf(WS); ringPath.length = 0; dirty.paths = false; }
+
+/* ---------- icons ---------- */
+function beaver(c, x, y, s, a, dam) {
+  c.save(); c.translate(x, y); c.globalAlpha = a; c.lineWidth = Math.max(1, s * .11);
+  c.strokeStyle = C['beaver-edge']; c.fillStyle = C.beaver;
+  c.beginPath(); c.ellipse(-s*.52, s*.14, s*.5, s*.2, -.18, 0, 6.3); c.fill(); c.stroke();
+  c.beginPath(); c.ellipse(-s*.02, 0, s*.5, s*.36, 0, 0, 6.3); c.fill(); c.stroke();
+  c.beginPath(); c.arc(s*.46, -s*.13, s*.27, 0, 6.3); c.fill(); c.stroke();
+  c.beginPath(); c.arc(s*.42, -s*.37, s*.09, 0, 6.3); c.fill(); c.stroke();
+  c.fillStyle = C['beaver-edge']; c.fillRect(s*.62, -s*.12, s*.1, s*.17); c.fillStyle = C.beaver;
+  if (dam) { c.strokeStyle = C.beaver; c.lineWidth = Math.max(1.2, s*.12);
+    c.beginPath(); c.moveTo(-s*.9, s*.58); c.quadraticCurveTo(0, s*.38, s*.9, s*.58); c.stroke();
+    c.beginPath(); c.moveTo(-s*.75, s*.78); c.quadraticCurveTo(0, s*.58, s*.75, s*.78); c.stroke(); }
+  c.restore();
+}
+const TQ_KEYS = ['tq0','tq1','tq2','tq3'];
+const tqPos = lv => clamp(lv / 3, 0, 1);                       // lv = log10(NTU); 1 NTU -> 0, 1,000 NTU -> 1
+const tqColAt = (t, a = 1) => { const x = t * 3, i = Math.min(2, Math.floor(x)); return rgb(mix(C.rgb[TQ_KEYS[i]], C.rgb[TQ_KEYS[i+1]], x - i), a); };
+const tbCol = v => tqColAt(tqPos(Math.log10(Math.max(v, 1))));
+
+/* ---------- fire colour by age ---------- */
+const AGE_STOPS = [0, 2, 8, 25, 60], AGE_KEYS = ['fire-hot','fire-mid','fire-red','fire-old','fire-scar'];
+function fireRGB(age) { if (age <= 0) return C.rgb['fire-hot'];
+  for (let i = 1; i < AGE_STOPS.length; i++) if (age <= AGE_STOPS[i]) { const t = (age - AGE_STOPS[i-1]) / (AGE_STOPS[i] - AGE_STOPS[i-1]);
+    return mix(C.rgb[AGE_KEYS[i-1]], C.rgb[AGE_KEYS[i]], t); }
+  return C.rgb['fire-scar']; }
+const ease = t => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
+
+/* ---------- state ---------- */
+const S = { t: 0, playing: false, speed: 1, tab: 'tur', showMax: false,
+  show: { fire: true, stream: true, dam: true, sight: true, sens: true, gauge: true, lab: true }, hover: null, pin: null };
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const kAt = t => { let k = -1; for (let i = 0; i < FIRE.length; i++) if (FIRE[i].t <= t) k = i; return k; };
+
+/* ---------- layer: streams ---------- */
+function buildStreams() {
+  const c = layers.streams.getContext('2d'); c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,W,H);
+  const wcls = o => o >= 6 ? 3 : o >= 5 ? 2 : o >= 4 ? 1 : 0, wpx = [0.9, 1.4, 2.0, 2.8], zf = streamZoom(), paths = [0,1,2,3].map(() => new Path2D());
+  STREAMS.forEach(s => { const P = paths[wcls(s.o)]; for (let i = 1; i < s.n; i++) { P.moveTo(SX(s.xy[2*i-2]), SY(s.xy[2*i-1])); P.lineTo(SX(s.xy[2*i]), SY(s.xy[2*i+1])); } });
+  c.lineCap = 'round'; c.lineJoin = 'round'; c.strokeStyle = C['stream'];
+  paths.forEach((P, k) => { c.lineWidth = wpx[k] * zf; c.stroke(P); });
+  if (S.show.lab) { c.textAlign = 'center'; c.textBaseline = 'middle';
+    LABELS.forEach(L => { const x = SX(L.x), y = SY(L.y); if (x < 0 || y < 0 || x > W || y > H) return;
+      c.lineWidth = 3; c.strokeStyle = C.halo; c.fillStyle = C.label;
+      if (L.kind === 'town') { c.beginPath(); c.arc(x, y, 3, 0, 6.3); c.fill(); c.font = '600 11px "DM Sans",sans-serif';
+        c.strokeText(L.t, x, y - 11); c.fillText(L.t, x, y - 11); }
+      else { c.font = 'italic 500 10px "DM Sans",sans-serif'; c.strokeText(L.t, x, y - 9); c.fillText(L.t, x, y - 9); } }); }
+  dirty.streams = false;
+}
+const streamZoom = () => Math.min(2.2, Math.max(.8, view.s / fitS * .7 + .3));
+
+/* ---------- river colored by measured turbidity ---------- */
+const COV = /*COV*/null;
+const COVL = COV.cov, EXT_M = 3000, SOLID_M = 1000, INTERP_MAX_M = COV.params.max_m;
+const sensorLog = (k, day) => { const v = valAt(ROSS[k], day); return v == null ? null : Math.log10(Math.max(v, 1)); };
+const TQ = { day: -99999, km: 0, last: 0 };
+function computeTurb(day) {
+  STREAMS.forEach(s => { s.tval.fill(NaN); s.covNow.fill(0); });
+  COVL.forEach(z => { const s = STREAMS[z.s];
+    for (let q = 0; q < z.v.length; q++) { const j = z.v[q], u = z.u[q], d = z.d[q]; let Us = null, Ds = null;
+      for (let a = 0; a < u.length; a += 2) { const lv = sensorLog(u[a], day); if (lv != null) { Us = [lv, u[a+1]]; break; } }
+      for (let a = 0; a < d.length; a += 2) { const lv = sensorLog(d[a], day); if (lv != null) { Ds = [lv, d[a+1]]; break; } }
+      let val = NaN, conf = 0;
+      if (Us && Ds && Us[1] + Ds[1] <= INTERP_MAX_M) { const w = Ds[1] / ((Us[1] + Ds[1]) || 1); val = w * Us[0] + (1 - w) * Ds[0]; conf = 1; }
+      else { const cnd = Us && (!Ds || Us[1] <= Ds[1]) ? Us : Ds; if (cnd && cnd[1] <= EXT_M) { val = cnd[0]; conf = cnd[1] <= SOLID_M ? 1 : .55; } }
+      if (conf) { s.tval[j] = val; s.covNow[j] = conf; } } });
+  TQ.day = day; }
+function buildTurb() {
+  const c = layers.turb.getContext('2d'); c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,W,H); TQ.km = 0;
+  if (!S.show.stream) { $('nKm').textContent = 'hidden'; dirty.turb = false; return; }
+  const NL = 24, wcls = o => o >= 6 ? 3 : o >= 5 ? 2 : o >= 4 ? 1 : 0, wpx = [1.6, 2.1, 2.8, 3.6], zf = streamZoom(), buckets = {}, casing = new Path2D();
+  STREAMS.forEach(s => { for (let i = 1; i < s.n; i++) { const a = s.covNow[i-1], b = s.covNow[i]; if (!a && !b) continue;
+    const va = s.tval[i-1], vb = s.tval[i], v = a && b ? (va + vb) / 2 : (a ? va : vb), conf = Math.min(a || 1, b || 1) < 1 ? 1 : 0;
+    const lvl = Math.round(tqPos(v) * (NL - 1)), key = (wcls(s.o) * 2 + conf) * 100 + lvl; const P = buckets[key] || (buckets[key] = new Path2D());
+    const x0 = SX(s.xy[2*i-2]), y0 = SY(s.xy[2*i-1]), x1 = SX(s.xy[2*i]), y1 = SY(s.xy[2*i+1]);
+    P.moveTo(x0, y0); P.lineTo(x1, y1); casing.moveTo(x0, y0); casing.lineTo(x1, y1);
+    TQ.km += Math.hypot(s.xy[2*i] - s.xy[2*i-2], s.xy[2*i+1] - s.xy[2*i-1]) * 111.32; } });
+  c.lineCap = 'round'; c.lineJoin = 'round';
+  c.strokeStyle = C.tcase; c.globalAlpha = .9; c.lineWidth = (wpx[1] + 2.6) * zf; c.stroke(casing); c.globalAlpha = 1;
+  Object.keys(buckets).map(Number).sort((a, b) => (a % 100) - (b % 100)).forEach(k => { const lvl = k % 100, conf = Math.floor(k / 100) % 2, w = Math.floor(k / 200);
+    c.globalAlpha = conf ? 1 : .55; c.strokeStyle = tqColAt(lvl / (NL - 1)); c.lineWidth = wpx[w] * zf; c.stroke(buckets[k]); });
+  c.globalAlpha = 1; $('nKm').textContent = nf(TQ.km) + ' km'; dirty.turb = false;
+}
+
+/* ---------- layer: fire ---------- */
+let fireSig = '';
+function buildFire(t) {
+  const k = kAt(t), c = layers.fire.getContext('2d'); c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,W,H);
+  if (k < 0 || !S.show.fire) { fireSig = ''; return; }
+  for (let j = k; j >= 0; j--) { ringPath[j] = ringPath[j] || pathOf(FIRE[j].polys); }
+  const draw = (clip, alpha) => { c.save(); if (clip) c.clip(wsPath);
+    for (let j = k; j >= 0; j--) { const age = t - FIRE[j].t, col = fireRGB(age), fade = j === k ? ease(age / 1.2) : 1;
+      c.fillStyle = rgb(col, alpha * fade * (age > 8 ? .82 : .95)); c.fill(ringPath[j], 'evenodd'); }
+    c.restore(); };
+  draw(false, .34); draw(true, 1);
+  const age = t - FIRE[k].t; if (age < 4) { const a = 1 - age / 4; c.lineJoin = 'round';
+    c.strokeStyle = rgb(C.rgb['fire-hot'], .35 * a); c.lineWidth = 7; c.stroke(ringPath[k]);
+    c.strokeStyle = rgb(C.rgb['fire-hot'], .95 * a); c.lineWidth = 1.6; c.stroke(ringPath[k]); }
+}
+const fireRGBage = a => a < 2 ? a * 8 : a < 8 ? 16 + (a - 2) * 2 : a < 25 ? 28 + (a - 8) * .3 : 33 + Math.min(a, 60) * .05;
+const sigOf = t => { const k = kAt(t); if (k < 0 || !S.show.fire) return 'none';
+  let s = k + ':' + Math.round(ease((t - FIRE[k].t) / 1.2) * 12) + ':' + (t - FIRE[k].t < 4 ? Math.round((t - FIRE[k].t) * 6) : 'x');
+  for (let j = k; j >= 0; j--) s += ',' + Math.min(36, Math.round(fireRGBage(t - FIRE[j].t))); return s; };
+
+/* ---------- flowing dots on reaches that have a turbidity color today (direction of flow) ---------- */
+const FLOW = STREAMS.filter((s, i) => COVL.some(z => z.s === i) && s.len > 0);
+function flowAt(s, d) { let lo = 0, hi = s.n - 1; while (hi - lo > 1) { const m = (lo + hi) >> 1; s.cum[m] <= d ? lo = m : hi = m; }
+  const seg = s.cum[hi] - s.cum[lo] || 1, f = (d - s.cum[lo]) / seg;
+  return [s.xy[2*lo] + (s.xy[2*hi] - s.xy[2*lo]) * f, s.xy[2*lo+1] + (s.xy[2*hi+1] - s.xy[2*lo+1]) * f, Math.min(s.covNow[lo], s.covNow[hi])]; }
+function drawFlow(c, now) { if (!S.show.stream || reduce) return; const sp = 40, v = 22;
+  FLOW.forEach(s => { const lenPx = s.len * view.s; if (lenPx < 12) return; const n = Math.max(1, Math.floor(lenPx / sp)), step = s.len / n,
+    off = ((now / 1000) * v / view.s) % step;
+    for (let i = 0; i < n; i++) { const d = (i * step + off) % s.len, p = flowAt(s, d); if (p[2] < .5) continue;
+      const x = SX(p[0]), y = SY(p[1]); if (x < -5 || y < -5 || x > W + 5 || y > H + 5) continue;
+      c.fillStyle = 'rgba(255,255,255,.8)'; c.strokeStyle = 'rgba(0,0,0,.35)'; c.lineWidth = .8; c.beginPath(); c.arc(x, y, 1.7, 0, 6.3); c.fill(); c.stroke(); } }); }
+
+/* ---------- measurement markers on the map ---------- */
+function drawSensor(c, s, z) { const x = SX(s.x), y = SY(s.y); if (x < -20 || y < -20 || x > W + 20 || y > H + 20) return;
+  const v = valAt(s, Math.floor(S.t)), r = 6.5 * z, hov = S.hover === s;
+  if (s.on) { c.strokeStyle = s.color; c.lineWidth = 2.4; c.beginPath(); c.arc(x, y, r + 5, 0, 6.3); c.stroke(); }
+  c.beginPath(); c.moveTo(x, y - r); c.lineTo(x + r, y); c.lineTo(x, y + r); c.lineTo(x - r, y); c.closePath();
+  if (v == null) { c.fillStyle = C.surface; c.globalAlpha = .75; c.fill(); c.globalAlpha = 1; c.setLineDash([2, 2]); }
+  else { c.fillStyle = tbCol(v); c.fill(); }
+  c.strokeStyle = C.label; c.lineWidth = hov ? 2 : 1.2; c.stroke(); c.setLineDash([]); }
+function drawGauge(c, g, z) { const x = SX(g.x), y = SY(g.y); if (x < -20 || y < -20 || x > W + 20 || y > H + 20) return;
+  const v = valAt(g, Math.floor(S.t)), hov = S.hover === g, r = v == null ? 4 * z : (3 + 2.1 * Math.log10(v + 1)) * z;
+  if (g.on) { c.strokeStyle = g.color; c.lineWidth = 2.4; c.beginPath(); c.arc(x, y, r + 4, 0, 6.3); c.stroke(); }
+  c.beginPath(); c.arc(x, y, r, 0, 6.3); c.fillStyle = rgb(hex(C.flow), v == null ? .1 : .28); c.fill();
+  c.strokeStyle = C.flow; c.lineWidth = hov ? 2.6 : 1.8; if (v == null) c.setLineDash([2, 2]); c.stroke(); c.setLineDash([]); }
+
+/* ---------- main frame ---------- */
+function frame(now) {
+  if (dirty.paths) rebuildPaths();
+  if (dirty.streams) buildStreams();
+  const day = Math.floor(S.t);
+  if (dirty.turb || (day !== TQ.day && now - TQ.last > 70)) { if (day !== TQ.day) computeTurb(day); buildTurb(); TQ.last = now; }
+  const sg = sigOf(S.t); if (dirty.fire || sg !== fireSig) { buildFire(S.t); fireSig = sg; dirty.fire = false; }
+  ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = C.ground; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.land; ctx.fill(wsPath, 'evenodd');
+  ctx.drawImage(layers.fire, 0, 0, W, H);
+  ctx.strokeStyle = C['ws-edge']; ctx.lineWidth = 1.2; ctx.setLineDash([5, 4]); ctx.stroke(wsPath); ctx.setLineDash([]);
+  ctx.drawImage(layers.streams, 0, 0, W, H);
+  ctx.drawImage(layers.turb, 0, 0, W, H);
+  drawFlow(ctx, now);
+  const z = Math.min(1.7, Math.max(.75, Math.pow(view.s / fitS, .35)));
+  const draw = (arr, dam) => arr.forEach(s => { const x = SX(s.x), y = SY(s.y); if (x < -20 || y < -20 || x > W + 20 || y > H + 20) return;
+    const burned = s.burnT <= S.t, size = (dam ? 15 : 9) * z, hov = S.hover === s || S.pin === s;
+    if (burned) { const age = S.t - s.burnT; if (age >= 0 && age < 3) { const p = age / 3; ctx.strokeStyle = rgb(hex(C['burn-ring']), 1 - p); ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(x, y, size * (.8 + p * 2.2), 0, 6.3); ctx.stroke(); }
+      ctx.strokeStyle = C['burn-ring']; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(x, y, size * .78, 0, 6.3); ctx.stroke(); }
+    beaver(ctx, x, y, size, burned ? .78 : 1, dam);
+    if (hov) { ctx.strokeStyle = C.label; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(x, y, size * .95, 0, 6.3); ctx.stroke(); } });
+  if (S.show.sight) draw(SITES.filter(s => s.k === 'sight'), false);
+  if (S.show.gauge) USGS.forEach(g => drawGauge(ctx, g, z));
+  if (S.show.sens) ROSS.forEach(s => drawSensor(ctx, s, z));
+  if (S.show.dam) draw(SITES.filter(s => s.k === 'dam'), true);
+  if (dirty.chart || chartT !== S.t) drawChart();
+}
+
+/* ---------- loop / transport ---------- */
+let last = performance.now();
+function tick(now) { const dt = Math.min(.1, Math.max(0, (now - last) / 1000)); last = now;
+  if (S.playing) { const p = pOf(S.t) + dt * S.speed / 40; if (p >= 1) { S.t = T_END; setPlaying(false); } else S.t = tOf(p); syncUI(); }
+  frame(now); requestAnimationFrame(tick); }
+function setPlaying(p) { S.playing = p; $('play').textContent = p ? 'Pause' : (S.t >= T_END ? 'Replay' : 'Play'); }
+
+/* ---------- UI ---------- */
+const $ = id => document.getElementById(id);
+function caption(t) { const k = kAt(t), nb = sitesBurnSorted.filter(b => b <= t).length, N = SITES.length;
+  if (k < 0) return `Before the fire. ${N} beaver records sit in the watershed. The river is colored by turbidity measured at the CSU sensors (green is clear, dark is murky); stretches far from a sensor stay gray-blue.`;
+  const f = FIRE[k], growth = k ? f.ac - FIRE[k-1].ac : f.ac, prev = k ? fmtS(FIRE[k-1].t) : null;
+  if (t > T_FIRE_END + 1) return `Recovery period. The fire perimeter is final at ${nf(FIRE[FIRE.length-1].ac)} acres; the burned ground is shown aged. ${nb} of ${N} beaver records are inside the burn. The chart below carries measured turbidity and flow forward to ${fmt(T_END)}.`;
+  const late = t > FIRE[FIRE.length - 2].t + 1 && t < FIRE[FIRE.length - 1].t;
+  let s = f.kind === 'final perimeter' ? `Final perimeter: ${nf(f.ac)} acres.` : `Latest mapped perimeter: ${fmtS(f.t)}, ${nf(f.ac)} acres` + (prev ? ` (+${nf(growth)} since ${prev}).` : '.');
+  if (late) s += ' No perimeters were mapped between Nov 1 and the final one.';
+  return s + ` ${nb} of ${N} beaver records are inside the burn.`; }
+function syncUI() { const k = kAt(S.t), f = FIRE[k];
+  $('hudDate').textContent = fmt(S.t);
+  $('hudAcres').innerHTML = k < 0 ? 'no fire yet' : (S.t > T_FIRE_END ? `<b>${nf(f.ac)}</b> acres &middot; final perimeter` : `<b>${nf(f.ac)}</b> acres &middot; perimeter of ${fmtS(f.t)}`);
+  $('scrub').value = Math.round(pOf(S.t) * 1000); $('scrub').setAttribute('aria-valuetext', fmt(S.t)); $('cap').textContent = caption(S.t);
+  const nb = sitesBurnSorted.filter(b => b <= S.t).length; $('nBurn').textContent = nb + ' of ' + SITES.length;
+  renderRead(); }
+
+const st = DATA.stats, P = DATA.params;
+$('stats').innerHTML = `
+  <div class="panel stat"><div class="n">${st.n_dams} + ${st.n_sight}</div><div class="l">dam records + beaver sightings inside the watershed (sightings thinned to one per 50 m)</div></div>
+  <div class="panel stat"><div class="n" id="nBurn">0 of ${st.n_sites}</div><div class="l">beaver records inside the burn so far</div></div>
+
+  <div class="panel stat"><div class="n" id="nKm">&hellip;</div><div class="l">of river colored by measured turbidity on this date (sensor readings blended along the channel, up to 3 km past the last sensor)</div></div>
+  <div class="panel stat"><div class="n">${PN.ross.length} + ${PN.usgs.length}</div><div class="l">turbidity sensors (CSU ROSS) + discharge gauges (USGS) with measured daily series</div></div>`;
+
+// slider ticks (positions follow the shared time axis)
+const tk = $('ticks');
+FIRE.forEach((f, k) => { if (f.t > T_FIRE_END - 1) return; const s = document.createElement('span'); s.style.left = (pOf(f.t) * 100) + '%'; if (TOP.some(t => t.k === k)) s.className = 'big'; tk.appendChild(s); });
+const lab = (txt, t, cls) => { const e = document.createElement('em'); e.textContent = txt; e.style.left = (pOf(t) * 100) + '%'; tk.appendChild(e);
+  const s = document.createElement('span'); s.className = 'yr'; s.style.left = (pOf(t) * 100) + '%'; if (cls) s.style.opacity = .5; tk.appendChild(s); };
+[['Aug 2020', 0], ['Oct', dayOf('2020-10-01')]].forEach(([l, t]) => lab(l, t));
+for (let y = 2021; y <= 2025; y++) lab(String(y), dayOf(y + '-01-01'));
+TOP.forEach(t => { const f = FIRE[t.k], b = document.createElement('button'); b.className = 'chip';
+  b.textContent = f.kind === 'final perimeter' ? `Final perimeter: +${nf(t.g)} ac` : `${fmtS(f.t)}: +${nf(t.g)} ac`; b.title = 'Jump to this perimeter';
+  b.onclick = () => { setPlaying(false); S.t = f.t + .6; syncUI(); }; $('chips').appendChild(b); });
+
+$('play').onclick = () => { if (!S.playing && S.t >= T_END) S.t = 0; setPlaying(!S.playing); };
+$('speed').onchange = e => S.speed = +e.target.value;
+$('scrub').oninput = e => { S.t = tOf(+e.target.value / 1000); setPlaying(false); syncUI(); };
+[['lFire','fire'],['lStream','stream'],['lDam','dam'],['lSight','sight'],['lSens','sens'],['lGauge','gauge'],['lLab','lab']].forEach(([id, k]) => $(id).onchange = e => { S.show[k] = e.target.checked; markDirty(); });
+addEventListener('keydown', e => { if (e.code === 'Space' && e.target === document.body) { e.preventDefault(); $('play').click(); } });
+
+/* ---------- measurements panel ---------- */
+const chart = $('chart'), cc = chart.getContext('2d'); let chartT = null, CW = 0, CH = 0;
+const M = { l: 50, r: 14, t: 12, b: 30 };
+const cur = () => S.tab === 'tur' ? ROSS : USGS;
+const META = { tur: { unit: 'NTU', title: 'Turbidity, daily median (NTU, log scale)', lo: .1, hi: 10000, src: 'CSU ROSS sensors' },
+               q:   { unit: 'cfs', title: 'Discharge, daily mean (cubic feet per second, log scale)', lo: .1, hi: 10000, src: 'USGS gauges' } };
+{ const ext = a => { let mx = 0; a.forEach(s => s.v.forEach(v => { if (v != null && v > mx) mx = v; })); return mx; };
+  META.tur.hi = Math.pow(10, Math.ceil(Math.log10(Math.max(ext(ROSS), ...ROSS.map(s => Math.max(0, ...s.mx.filter(v => v != null)))))));
+  META.q.hi = Math.pow(10, Math.ceil(Math.log10(ext(USGS)))); }
+const px = p => M.l + (p + W_PRE) / (1 + W_PRE) * (CW - M.l - M.r);
+const py = v => { const m = META[S.tab], l = Math.log10(clamp(v, m.lo, m.hi)); return M.t + (1 - (l - Math.log10(m.lo)) / (Math.log10(m.hi) - Math.log10(m.lo))) * (CH - M.t - M.b); };
+function sizeChart() { const r = chart.getBoundingClientRect(); CW = r.width; CH = r.height; chart.width = Math.round(CW * DPR); chart.height = Math.round(CH * DPR); dirty.chart = true; }
+
+function drawChart() {
+  chartT = S.t; dirty.chart = false; const c = cc, m = META[S.tab], sel = cur().filter(s => s.on);
+  c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,CW,CH);
+  const x0 = px(-W_PRE), x1 = px(1), yT = M.t, yB = CH - M.b;
+  // fire-burning band
+  c.fillStyle = C.band; c.fillRect(px(pOf(T_BURN_START)), yT, px(pOf(T_FIRE_END)) - px(pOf(T_BURN_START)), yB - yT);
+  // grid + y labels
+  c.font = '10px "DM Mono",monospace'; c.textAlign = 'right'; c.textBaseline = 'middle';
+  for (let e = Math.log10(m.lo); e <= Math.log10(m.hi) + 1e-9; e++) { const v = Math.pow(10, e), y = py(v);
+    c.strokeStyle = C.grid; c.lineWidth = 1; c.beginPath(); c.moveTo(x0, y); c.lineTo(x1, y); c.stroke();
+    c.fillStyle = C.dim; c.fillText(v >= 1 ? nf(v) : String(v), x0 - 6, y); }
+  // x labels
+  c.textAlign = 'center'; c.textBaseline = 'top'; c.fillStyle = C.dim;
+  const xl = (txt, t) => { const x = px(pOf(t)); c.fillText(txt, x, yB + 6); c.strokeStyle = C.grid; c.beginPath(); c.moveTo(x, yB); c.lineTo(x, yB + 3); c.stroke(); };
+  if (CW > 600) { xl("Jul '19", dayOf('2019-07-01')); xl("Jan '20", dayOf('2020-01-01')); } else xl("'19", dayOf('2019-07-01'));
+  xl('Oct', dayOf('2020-10-01'));
+  for (let y = 2021; y <= 2025; y++) xl(String(y), dayOf(y + '-01-01'));
+  // axis break marks
+  c.strokeStyle = C.dim; c.setLineDash([3, 3]); c.lineWidth = 1;
+  [0, T_FIRE_END].forEach(t => { const x = px(pOf(t)); c.beginPath(); c.moveTo(x, yT); c.lineTo(x, yB); c.stroke(); }); c.setLineDash([]);
+  c.fillStyle = C.dim; c.textAlign = 'left'; c.textBaseline = 'top'; c.font = '10px "DM Sans",sans-serif';
+  c.fillText('fire burning', px(pOf(T_BURN_START)) + 4, yT + 3);
+  if (CW > 600) { c.textBaseline = 'bottom'; c.fillText('Aug 1 \u2013 Dec 2, 2020 drawn wider', px(pOf(0)) + 4, yB - 3); }
+  // series: played part solid, future part faint
+  const line = (s, arr, lw, alpha) => { c.lineWidth = lw; c.strokeStyle = s.color; c.globalAlpha = alpha; c.beginPath(); let pen = false;
+    for (let i = 0; i < arr.length; i++) { const v = arr[i]; if (v == null) { pen = false; continue; }
+      const x = px(pOf(s.t0 + i)), y = py(v); pen ? c.lineTo(x, y) : c.moveTo(x, y); pen = true; } c.stroke(); c.globalAlpha = 1; };
+  const xc = px(clamp(pOf(S.t), -W_PRE, 1));
+  [[x0, xc, 1], [xc, x1, .22]].forEach(([a, b, al]) => { c.save(); c.beginPath(); c.rect(a, yT, b - a, yB - yT + 1); c.clip();
+    sel.forEach(s => { if (S.tab === 'tur' && S.showMax && s.mx) line(s, s.mx, 1, al * .35); line(s, s.v, 1.6, al); }); c.restore(); });
+  // cursor
+  c.strokeStyle = C.text; c.lineWidth = 1.4; c.beginPath(); c.moveTo(xc, yT); c.lineTo(xc, yB); c.stroke();
+  c.fillStyle = C.text; c.beginPath(); c.moveTo(xc - 5, yT); c.lineTo(xc + 5, yT); c.lineTo(xc, yT + 6); c.closePath(); c.fill();
+  c.textAlign = xc > CW - 80 ? 'right' : 'left'; c.textBaseline = 'top'; c.font = '500 10px "DM Mono",monospace';
+  c.lineWidth = 3; c.strokeStyle = C.surface; c.strokeText(fmt(S.t), xc + (xc > CW - 80 ? -6 : 6), yT + 18);
+  c.fillStyle = C.text; c.fillText(fmt(S.t), xc + (xc > CW - 80 ? -6 : 6), yT + 18);
+  if (!sel.length) { c.fillStyle = C.dim; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '13px "DM Sans",sans-serif'; c.fillText('Pick one or more sites below, or click a marker on the map', (x0 + x1) / 2, (yT + yB) / 2); }
+}
+function chartPointer(e) { const r = chart.getBoundingClientRect(), x = e.clientX - r.left;
+  const p = (x - M.l) / (CW - M.l - M.r) * (1 + W_PRE) - W_PRE; S.t = tOf(clamp(p, 0, 1)); setPlaying(false); syncUI(); }
+let drag = false;
+chart.addEventListener('pointerdown', e => { drag = true; chart.setPointerCapture(e.pointerId); chartPointer(e); });
+chart.addEventListener('pointermove', e => { if (drag) chartPointer(e); });
+chart.addEventListener('pointerup', () => drag = false);
+
+function renderRead() { const sel = cur().filter(s => s.on), m = META[S.tab], d = Math.floor(S.t);
+  $('read').innerHTML = sel.map(s => { const v = valAt(s, d), mx = s.mx ? valAt(s, d, s.mx) : null;
+    const num = v == null ? '<span class="n">no data this day</span>' : `${v >= 100 ? nf(v) : v.toFixed(v >= 10 ? 1 : 2)} ${m.unit}`;
+    const extra = S.tab === 'tur' && mx != null ? `<span class="n">daily max ${mx >= 100 ? nf(mx) : mx.toFixed(1)}</span>` : '';
+    return `<div style="border-left:4px solid ${s.color}"><span class="n">${s.name}</span><b>${num}</b>${extra}</div>`; }).join(''); }
+function renderPick() { const list = cur(), m = META[S.tab];
+  $('mtitle').textContent = m.title + ' \u00b7 ' + m.src; $('maxWrap').style.display = S.tab === 'tur' ? '' : 'none';
+  $('presets').innerHTML = '<span class="lab">Quick picks</span>';
+  PRESETS[S.tab].forEach(([name, ids]) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = name;
+    b.onclick = () => { list.forEach(s => s.on = ids ? ids.includes(s.id) : true); renderPick(); dirty.chart = true; syncUI(); }; $('presets').appendChild(b); });
+  $('pick').innerHTML = list.map((s, i) => `<label title="${(s.desc || '').replace(/"/g, '')}"><input type="checkbox" data-i="${i}" ${s.on ? 'checked' : ''}><i class="sw" style="background:${s.color}"></i><span class="nm">${s.name}</span></label>`).join('');
+  $('pick').querySelectorAll('input').forEach(inp => inp.onchange = () => { list[+inp.dataset.i].on = inp.checked; dirty.chart = true; syncUI(); }); }
+function setTab(t) { S.tab = t; $('tabTur').setAttribute('aria-selected', t === 'tur'); $('tabQ').setAttribute('aria-selected', t === 'q'); renderPick(); dirty.chart = true; syncUI(); }
+$('tabTur').onclick = () => setTab('tur'); $('tabQ').onclick = () => setTab('q');
+$('showMax').onchange = e => { S.showMax = e.target.checked; dirty.chart = true; };
+
+/* ---------- pan / zoom / hover / click ---------- */
+function zoomAt(f, x, y) { const wxp = WXs(x), wyp = WYs(y); view.s = Math.min(fitS * 40, Math.max(fitS * .6, view.s * f));
+  view.cx = wxp - (x - W / 2) / view.s; view.cy = wyp + (y - H / 2) / view.s; markDirty(); }
+$('zin').onclick = () => zoomAt(1.5, W / 2, H / 2); $('zout').onclick = () => zoomAt(1 / 1.5, W / 2, H / 2); $('zfit').onclick = fit;
+cv.addEventListener('wheel', e => { if (!(e.ctrlKey || e.metaKey)) return; e.preventDefault(); const r = cv.getBoundingClientRect(); zoomAt(Math.exp(-e.deltaY * .0015), e.clientX - r.left, e.clientY - r.top); }, { passive: false });
+const ptrs = new Map(); let pinch0 = 0, moved = 0;
+cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); moved = 0; cv.classList.add('drag');
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = Math.hypot(a[0]-b[0], a[1]-b[1]); } });
+cv.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+  if (ptrs.has(e.pointerId)) { const p = ptrs.get(e.pointerId), dx = e.clientX - p[0], dy = e.clientY - p[1]; ptrs.set(e.pointerId, [e.clientX, e.clientY]); moved += Math.abs(dx) + Math.abs(dy);
+    if (ptrs.size === 1) { view.cx -= dx / view.s; view.cy += dy / view.s; markDirty(); }
+    else if (ptrs.size === 2) { const [a, b] = [...ptrs.values()], d = Math.hypot(a[0]-b[0], a[1]-b[1]); if (pinch0) zoomAt(d / pinch0, (a[0]+b[0])/2 - r.left, (a[1]+b[1])/2 - r.top); pinch0 = d; } }
+  else hoverAt(mx, my); });
+cv.addEventListener('pointerup', e => { ptrs.delete(e.pointerId); cv.classList.remove('drag'); pinch0 = 0;
+  if (moved < 6) { const r = cv.getBoundingClientRect(), s = hit(e.clientX - r.left, e.clientY - r.top);
+    if (s && (s.kind === 'tur' || s.kind === 'q')) { s.on = !s.on; if (s.on && S.tab !== s.kind) setTab(s.kind); else { renderPick(); dirty.chart = true; syncUI(); } showTip(s, e.clientX - r.left, e.clientY - r.top); return; }
+    S.pin = s === S.pin ? null : s; showTip(S.pin, e.clientX - r.left, e.clientY - r.top); } });
+cv.addEventListener('pointerleave', () => { if (!S.pin) { S.hover = null; $('tip').style.display = 'none'; } });
+function hit(mx, my) { let best = null, bd = 14;
+  const test = (s, ok) => { if (!ok) return; const d = Math.hypot(SX(s.x) - mx, SY(s.y) - my); if (d < bd) { bd = d; best = s; } };
+  SITES.forEach(s => test(s, S.show[s.k === 'dam' ? 'dam' : 'sight'])); USGS.forEach(s => test(s, S.show.gauge)); ROSS.forEach(s => test(s, S.show.sens)); return best; }
+function hoverAt(mx, my) { const s = hit(mx, my); S.hover = s; if (!S.pin) showTip(s, mx, my); cv.style.cursor = s ? 'pointer' : ''; }
+function showTip(s, mx, my) { const t = $('tip'); if (!s) { t.style.display = 'none'; return; }
+  const d = Math.floor(S.t);
+  if (s.kind === 'tur' || s.kind === 'q') { const v = valAt(s, d), m = META[s.kind];
+    const val = v == null ? 'no data on this date' : `${v >= 100 ? nf(v) : v.toFixed(2)} ${m.unit} (daily ${s.kind === 'tur' ? 'median' : 'mean'}, ${fmtS(d)})`;
+    const extra = s.kind === 'tur' ? (s.burn != null ? `<div class="m">${s.burn}% of its ${nf(s.basin)} km&sup2; upstream basin lies inside the final fire perimeter</div>` : '')
+                                   : (s.da ? `<div class="m">Drainage area about ${nf(s.da)} km&sup2;</div>` : '');
+    t.innerHTML = `<b>${s.name}</b><div class="m">${s.kind === 'tur' ? 'CSU ROSS turbidity sensor' : 'USGS discharge gauge'}</div><div class="m">${s.desc || ''}</div><div>${val}</div>${extra}${s.kind === 'tur' ? `<div class="m">${COV.snapped[ROSS.indexOf(s)] ? 'Colors the river around it on the map' : 'Shown as a marker only (not used to color the river)'}</div>` : ''}<div class="m">Click to ${s.on ? 'remove from' : 'add to'} the chart</div>`; }
+  else { const burned = s.burnT <= S.t ? `<div class="m" style="color:var(--burn-ring)">Inside the burn since ${fmtS(s.burnT)}</div>` : (s.burn ? `<div class="m">Inside the burn from ${fmtS(s.burnT)}</div>` : '');
+    t.innerHTML = `<b>${s.k === 'dam' ? 'Beaver dam record' : 'Beaver sighting'}</b><div class="m">${s.src}</div>
+      <div class="m">${s.date ? 'Observed ' + s.date : 'Date not recorded'}${s.acc != null ? ' &middot; &plusmn;' + s.acc + ' m' : ''}</div>
+${burned}`; }
+  t.style.display = 'block'; const w = 280; t.style.left = Math.min(W - w, Math.max(8, mx + 14)) + 'px'; t.style.top = Math.min(H - 150, Math.max(8, my + 14)) + 'px'; }
+
+function scaleBar() { const km = 80 / (view.s / 111.32);
+  const nice = [1,2,5,10,20,50].reduce((a, b) => Math.abs(b - km) < Math.abs(a - km) ? b : a); const pxw = nice * view.s / 111.32;
+  $('scale').innerHTML = `<i style="width:${pxw}px"></i>${nice} km`; }
+setInterval(scaleBar, 400);
+
+/* ---------- variables guide ---------- */
+const rossDays = PN.ross.reduce((n, s) => n + s.med.filter(v => v != null).length, 0), usgsDays = PN.usgs.reduce((n, s) => n + s.cfs.filter(v => v != null).length, 0);
+const nPerim = FIRE.filter(f => f.kind === 'mapped perimeter').length;
+const V = (name, tag, tagCls, plain, rows) => `<div class="var"><h3>${name}<span class="tag ${tagCls}">${tag}</span></h3><p class="plain">${plain}</p><dl>${rows.map(([k, v, w]) => `<dt>${k}</dt><dd${w ? ' class="warn"' : ''}>${v}</dd>`).join('')}</dl></div>`;
+const R = 'MEASURED OR MAPPED', D = 'DERIVED', MOD = 'ILLUSTRATIVE MODEL';
+$('guideBody').innerHTML = `
+<div class="grp">Time</div><div class="vars">
+${V('animation date', D, 'derived', 'The date the playhead is on. One shared clock drives the map, the fire, the sensor markers and the chart cursor.',
+  [['Unit', 'calendar day (UTC)'], ['Range', `${fmt(0)} to ${fmt(T_END)}; the chart also shows ${fmtS(T_PRE)}, 2019 onward for before-fire context`],
+   ['Drawn as', 'slider and HUD date. The slider gives Aug 1 to Dec 2, 2020 (the fire season) 38% of its length and the next five years 62%, so the fire is not squeezed into a sliver.', true]])}
+</div>
+<div class="grp">Fire</div><div class="vars">
+${V('Perimeter_Date', R, 'real', 'The date a fire perimeter was mapped. Each mapped perimeter encloses everything burned up to that date.',
+  [['Unit', 'date'], ['Source', 'NIFC Fire_Progression_Merged, Cameron Peak Fire'], ['Coverage', `${nPerim} dated perimeters, Aug 13 to Nov 1, 2020, plus the final perimeter`],
+   ['Drawn as', 'red burned area. The map steps from one perimeter to the next; nothing is interpolated between them.'],
+   ['Watch out', 'No perimeters were mapped between Nov 1 and the final one. The final outline carries an Oct 6 date in its source file, so it is placed at Dec 2, the end of the burn.', true]])}
+${V('Total_Acres', R, 'real', 'Area inside a mapped perimeter.',
+  [['Unit', 'acres'], ['Source', 'same NIFC layer; final 208,913 acres from the CSU-hosted final perimeter'], ['Drawn as', 'the acres figure under the date (HUD) and the "+acres" jump chips under the slider'],
+   ['Watch out', 'Jump chips compare each perimeter with the one before it, which may be several days earlier.']])}
+${V('perimeter age', D, 'derived', 'Days between the playhead and the date a ring of burned area was mapped. It colors each growth ring.',
+  [['Unit', 'days'], ['Drawn as', 'bright orange for new growth, then red, then dark scar color over about two months'], ['Watch out', 'Color shows time since mapping, not burn severity. Severity is not in this data.', true]])}
+${V('inside-burn date', D, 'derived', 'The date a beaver record first falls inside a mapped perimeter.',
+  [['Unit', 'date'], ['Drawn as', 'an expanding orange ring on the icon when the fire arrives, then a thin ring left on it'], ['Result', `${st.n_burned} of ${st.n_sites} records are inside the final perimeter`]])}
+</div>
+<div class="grp">Beaver and stream</div><div class="vars">
+${V('beaver record type', R, 'real', 'Whether a point is a documented dam location or an animal sighting.',
+  [['Source', 'dam records: week-1 ground-truth database (expert-mapped dams); sightings: GBIF and iNaturalist research-grade'], ['Count', `${st.n_dams} dam records, ${st.n_sight} sightings (sightings within 50 m merged)`],
+   ['Drawn as', 'large beaver-with-dam icon vs small beaver icon'], ['Watch out', 'Sightings are animals, not dams, and cluster where people are (Fort Collins, Greeley). This is a sample of records, not a census.', true]])}
+${V('position accuracy', R, 'real', 'How precisely a record is located, as reported by its source.',
+  [['Unit', 'meters'], ['Drawn as', 'shown in the icon tooltip']])}
+${V('stream reach, Strahler order', R, 'real', 'The river network. Larger streams are drawn thicker.',
+  [['Source', 'USGS NHDPlus flowlines, Strahler order 2 and higher'], ['Count', `${st.n_streams} reaches`], ['Drawn as', 'line width by order; flow direction follows the digitized downstream direction'],
+   ['Watch out', 'Small headwater streams (order 1) are left out.']])}
+${V('river color', D, 'derived', 'The color of each stretch of river on the map: turbidity measured by the CSU sensors, carried along the channel. Green is clear water; dark brown to black is murky.',
+  [['Scale', 'NTU on a log scale: 1 NTU or less is green, about 10 olive, about 100 brown, 1,000 or more near-black. A visual choice, not a drinking-water standard.'],
+   ['Rule', `On each date, a stretch between two sensors that both have data takes a blend of their two readings, weighted by distance along the river and computed on the log of turbidity. Past the outermost sensor the nearest reading is carried up to ${EXT_M/1000} km (paler beyond 1 km). A reading travels only along its own named river, up to ${INTERP_MAX_M/1000} km. Everything else stays gray-blue.`],
+   ['Drawn as', 'colored line over the river; white dots drift downstream along colored reaches to show flow direction'],
+   ['Watch out', 'This is interpolation, not measurement. Between sensors the real turbidity can differ, especially after storms or near canals and tributary inflows. In 2020 every sensor is on the lower river below the canyon, so the burned headwaters and tributaries are not colored. Little Beaver Creek’s sensor is left out of the coloring because it sits at the creek’s mouth.', true]])}
+</div>
+<div class="grp">Measured water data</div><div class="vars">
+${V('turbidity', R, 'real', 'How cloudy the water is, from light scattered by suspended sediment and ash. Higher means murkier water, which is a problem for drinking-water intakes.',
+  [['Unit', 'NTU (nephelometric turbidity units)'], ['Source', 'CSU ROSS Poudre Water Quality Network, Aqua TROLL sondes, 15-minute readings, quality-controlled ("cleaned") product; DOI 10.4211/hs.521e317e189e498581d0aaa08c3f32bc, CC BY 4.0'],
+   ['Coverage', `${PN.ross.length} sites, Sep 2019 to Nov 2025; ${nf(rossDays)} site-days. Most sites run only part of that span.`],
+   ['Processing', 'daily median and daily max of valid readings, days with at least 6 hours of data (24 readings)'],
+   ['Drawn as', 'diamond color on the map and the river color (same green-to-dark scale, log, 1 to 1,000 NTU), plus the chart lines (log axis)'],
+   ['Watch out', '2019 to 2021 data predate the team&rsquo;s calibration procedures; optical sensors foul easily. Treat extremes cautiously. No sensor sits in the burned headwaters or at a beaver site for 2020, and the USGS reports turbidity in FNU from different sensors, so the two systems are not mixed.', true]])}
+${V('upstream basin burned', D, 'derived', 'The share of a sensor&rsquo;s upstream drainage area that lies inside the final fire perimeter.',
+  [['Unit', 'percent of basin area'], ['Source', 'basin polygons published with the ROSS dataset, intersected with the final perimeter'],
+   ['Drawn as', 'a line in each sensor tooltip'], ['Examples', `Little Beaver Creek ${(PN.ross.find(s => s.id === 'lbea') || {}).burn_pct}% (burned), Pennock Creek ${(PN.ross.find(s => s.id === 'penn') || {}).burn_pct}% (unburned control); the Fort Collins reach about 19% of roughly 2,900 km&sup2;`]])}
+${V('discharge', R, 'real', 'How much water is flowing past a gauge each day.',
+  [['Unit', 'cfs (cubic feet per second), daily mean'], ['Source', 'USGS daily values, parameter 00060, Water Data OGC API'],
+   ['Coverage', `${PN.usgs.length} gauges, 2019 to 2025; ${nf(usgsDays)} gauge-days`], ['Drawn as', 'circle size on the map (grows with the log of flow) and the Discharge tab (log axis)'],
+   ['Watch out', 'About 15% of daily values carry the USGS "estimated" flag (11% during the fire window), about 1% are ice-affected and 6% are provisional. Gauges below Halligan and Joe Wright reservoirs show managed releases, not natural flow. Three gauges are in adjacent basins the fire also burned.', true]])}
+</div>`;
+
+$('note').innerHTML = `<b>How to read this.</b> Fire perimeters are the real mapped perimeters from NIFC; beaver icons are real records, not a census. <b>River color is measured turbidity</b> from CSU sensors, blended along the channel between them, so it is an interpolation: only the diamonds are actual readings. No beaver effect on turbidity or fire is shown or implied; this page lets you look, and it does not test it.`;
+
+/* ---------- boot ---------- */
+new ResizeObserver(() => { resize(); }).observe(stage);
+new ResizeObserver(() => { sizeChart(); }).observe($('measure'));
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readTheme);
+new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+readTheme(); resize(); sizeChart(); renderPick(); syncUI(); scaleBar(); setPlaying(false);
+requestAnimationFrame(tick);
+</script>

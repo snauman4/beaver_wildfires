@@ -1,0 +1,26 @@
+# renv (restore with renv::restore())
+renv/library/
+renv/staging/
+renv/local/
+renv/sandbox/
+.Rlib/
+.renv_cache/
+.Renviron
+
+# R / targets / editor / OS
+_targets/
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+.claude/
+
+# generated outputs (index.html is the committed build)
+outputs/
+
+# large raw downloads: see docs/data_pulls.md for how to re-fetch (GitHub rejects files over 100 MB; we keep every file under 50 MB)
+data/raw/ecoregions/
+data/raw/tigris_cache/
+data/raw/ross/*.parquet
+data/raw/usgs_discharge/daily_*.json

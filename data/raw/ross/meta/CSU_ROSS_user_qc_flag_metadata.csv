@@ -1,0 +1,19 @@
+flags,definition,corrections
+drift,Sensor values have consistent drift upwards or downwards. Typically due to internal sensor component drift or biofouling of optical or membrane sensors,"Where applicable, fDOM or Turbidity data can be corrected using exponential or linear fits. OMIT data points where slope is excessive"
+frozen,Water is likely frozen near sensor heads and is thus influencing sensor values,OMIT data if noise is excessive
+outside of seasonal range,Sensor values are higher or lower than acceptable seasonal range.,OMIT data if noise is excessive
+outside of sensor specification range,Sensor values are higher or lower than acceptable sensor specification  range.,OMIT all affected data
+sensor biofouling,Sensor values have consistent drift upwards or downwards. Typically due to internal sensor component drift or biofouling of optical or membrane sensors,Can be corrected with smoothing or averaging
+sensor malfunction,"Sensor issues resulting in poor data quality, typically related to software or deployment issues. Reference field notes prior to applying flag",OMIT all affected data
+site visit,Sensor values occurred during site visit and should be flagged due to technician handling the sensor improperly,Omit data if erroneous otherwise can be kept
+slope violation,Sensor values have high slope that is incosistent with other parameters or nearby sites.,"OMIT data if noise is excessive, average if noise is small"
+sonde burial,Sensor was likely buried by sediment and values are likely erronous,OMIT all affected data
+sonde not employed,Sonde was recording/transmitting values while not in deployment,OMIT all affected data
+sonde unsubmerged,Sonde was recording/transmitting values while sensor was unsubmerged from water,OMIT all affected data
+suspect data,Sensor values have high variability that is incosistent with other parameters or nearby sites. Typically due to environmental conditions or wiper ineffectiveness,Can be corrected with smoothing or averaging
+site visit window,Sensor values occurred during site visit and should be flagged due to technician handling the sensor improperly,Omit data if erroneous otherwise can be kept
+calibration error,Values were affected by poor/incorrect calibration and should be corrected later on,"Where applicable, calibrations can be corrected using calibration information. If correction is unsuccessful but data is within acceptable error, flag but do not omit.  If correction is unsuccessful or calibration information is unavailable and data is outside of acceptable error, OMIT"
+wiper interference,Values were affected by a faulty wiper stopping in front of the sensor causing sensor noise,Can be corrected with smoothing or averaging
+baro issue,Sonde and vulink  improperly merging barometric pressure resulting in incorrect depth (large daily fluctuations),OMIT all affected data
+baro noise,"Depth trend is correct but very noisy due to turbulent flows, should be averaged later on",Can be corrected with smoothing or averaging
+do noise, DO interference. Typically at lower ranges and less mixed sites,Can be corrected with smoothing or averaging

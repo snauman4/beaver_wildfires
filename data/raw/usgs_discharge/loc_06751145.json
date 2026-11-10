@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "USGS-06751145",
+        "agency_code": "USGS",
+        "agency_name": "U.S. Geological Survey",
+        "monitoring_location_number": "06751145",
+        "monitoring_location_name": "N FK CACHE LA POUDRE R ABV HALLIGAN RES NR VA DALE",
+        "district_code": "08",
+        "country_code": "US",
+        "country_name": "United States of America",
+        "state_code": "08",
+        "state_name": "Colorado",
+        "county_code": "069",
+        "county_name": "Larimer County",
+        "minor_civil_division_code": "92299",
+        "site_type_code": "ST",
+        "site_type": "Stream",
+        "hydrologic_unit_code": "101900070701",
+        "basin_code": "06",
+        "altitude": 6384.0,
+        "altitude_accuracy": 4.3,
+        "altitude_method_code": "N",
+        "altitude_method_name": "Interpolated from Digital Elevation Model",
+        "vertical_datum": "NAVD88",
+        "vertical_datum_name": "North American Vertical Datum of 1988",
+        "horizontal_positional_accuracy_code": "M",
+        "horizontal_positional_accuracy": "Accurate to + or - 1 min.",
+        "horizontal_position_method_code": "G",
+        "horizontal_position_method_name": "Global positioning system (GPS), Standard Positioning Service (SPS) or Precise Positioning Service (PPS)",
+        "original_horizontal_datum": "NAD83",
+        "original_horizontal_datum_name": "North American Datum of 1983",
+        "drainage_area": 331.0,
+        "contributing_drainage_area": null,
+        "time_zone_abbreviation": "MST",
+        "uses_daylight_savings": "Y",
+        "construction_date": null,
+        "aquifer_code": null,
+        "national_aquifer_code": null,
+        "aquifer_type_code": null,
+        "well_constructed_depth": null,
+        "hole_constructed_depth": null,
+        "depth_source_code": null,
+        "revision_note": null,
+        "revision_created": null,
+        "revision_modified": null
+      },
+      "id": "USGS-06751145",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.36722222222221,
+          40.89458333333333
+        ]
+      }
+    }
+  ],
+  "numberReturned": 1,
+  "links": [
+    {
+      "type": "application/geo+json",
+      "rel": "self",
+      "title": "This document as GeoJSON",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=json&id=USGS-06751145"
+    },
+    {
+      "rel": "alternate",
+      "type": "application/ld+json",
+      "title": "This document as RDF (JSON-LD)",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=jsonld&id=USGS-06751145"
+    },
+    {
+      "type": "text/html",
+      "rel": "alternate",
+      "title": "This document as HTML",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=html&id=USGS-06751145"
+    },
+    {
+      "type": "text/csv; charset=utf-8",
+      "rel": "alternate",
+      "title": "This document as CSV",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?f=csv&id=USGS-06751145"
+    },
+    {
+      "type": "application/json",
+      "title": "Monitoring locations",
+      "rel": "collection",
+      "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations"
+    }
+  ],
+  "timeStamp": "2026-10-20T20:53:35.659467Z"
+}

@@ -1,0 +1,388 @@
+site,date,approval,max,min,median,site_name,lon,lat,in_poudre_huc8
+USGS-06736600,2017-11-22,Approved,248,5.4,18.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-23,Approved,80.1,5.1,9.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-24,Approved,6.9,3.8,5.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-25,Approved,5.3,3.3,3.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-26,Approved,3.5,2.8,3.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-27,Approved,409,2.8,3.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-28,Approved,475,13.9,28.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-29,Approved,425,14.9,53,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-11-30,Approved,131,13.1,23.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-01,Approved,155,10.9,37.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-02,Approved,321,20,45.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-03,Approved,236,15.8,34.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-04,Approved,350,23.1,49.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-05,Approved,152,20.9,40.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-06,Approved,150,16.9,31.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-08,Approved,198,23.5,46.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-09,Approved,163,17.9,51.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-10,Approved,453,19.5,48.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-11,Approved,187,18.7,60.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-12,Approved,116,13.6,50.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-13,Approved,165,21.9,38.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-14,Approved,306,17.8,47.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-15,Approved,138,8.2,31.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-16,Approved,523,17.8,47.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-20,Approved,420,19,76.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-21,Approved,95.6,10.6,28.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-22,Approved,320,4.4,9.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-23,Approved,14.7,4.6,7.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-24,Approved,10.2,3.9,4.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-25,Approved,9,4.9,6.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-26,Approved,6,3.7,4.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-27,Approved,15.8,4,7.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-28,Approved,91.1,5.6,13.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-29,Approved,73,6.5,15.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-30,Approved,468,12,53,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2017-12-31,Approved,409,18.3,55.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-01,Approved,156,14.3,58.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-02,Approved,51.7,12.1,19.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-03,Approved,32.2,12.6,17.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-04,Approved,67.8,14.1,24.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-05,Approved,51,12.4,20.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-06,Approved,65.4,8.8,13.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-07,Approved,174,10.7,22.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-08,Approved,218,11,22.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-09,Approved,73.1,24.1,39.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-10,Approved,147,53,77.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-11,Approved,130,16.2,37.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-12,Approved,122,25.3,38.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-13,Approved,96.7,32.3,48.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-14,Approved,105,23.7,35.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-15,Approved,61.2,13.8,19.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-16,Approved,292,22.8,46.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-17,Approved,97.9,22.3,34.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-18,Approved,84.4,18.7,33.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-19,Approved,166,35.8,73.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-20,Approved,155,46.1,76.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-21,Approved,346,18.7,40.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-22,Approved,27.4,14.1,20.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-23,Approved,273,13.5,29.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-24,Approved,566,18.9,124,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-25,Approved,160,73.4,96.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-26,Approved,298,58.2,84.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-27,Approved,192,29.5,52.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-28,Approved,138,24.4,51.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-29,Approved,248,30.8,69.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-30,Approved,283,39.4,107,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-01-31,Approved,260,59.5,142,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-01,Approved,253,41.3,79.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-02,Approved,478,22,72.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-03,Approved,1130,77.9,176,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-04,Approved,593,58.2,137,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-05,Approved,470,61.4,114,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-06,Approved,2200,51.9,146,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-07,Approved,558,44.9,98.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-08,Approved,380,32.5,78.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-09,Approved,791,21.4,100,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-10,Approved,320,18.9,32.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-11,Approved,53.8,10.7,22.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-12,Approved,275,16,44.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-13,Approved,624,21,124,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-14,Approved,986,48,173,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-15,Approved,1650,66.8,188,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-16,Approved,663,42.1,91.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-17,Approved,300,36.5,82.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-18,Approved,253,32.2,63.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-19,Approved,158,21.3,64.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-20,Approved,125,20.9,46.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-21,Approved,181,21.1,60.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-22,Approved,1280,25.6,59.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-23,Approved,363,31.9,111,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-24,Approved,123,41.4,70,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-25,Approved,111,40,65,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-02-28,Approved,439,50.1,97.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-01,Approved,173,30.2,76.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-02,Approved,293,36.2,114,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-03,Approved,447,32,113,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-04,Approved,190,30.8,47,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-05,Approved,181,28.5,56.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-06,Approved,240,25.3,64.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-07,Approved,282,28.6,61.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-08,Approved,527,60.3,167,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-09,Approved,645,67,280,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-10,Approved,331,40.4,135,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-11,Approved,71.9,21,33.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-12,Approved,196,19.3,33.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-13,Approved,300,29.8,118,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-14,Approved,353,35.9,126,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-15,Approved,543,32.4,174,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-16,Approved,259,26.9,82.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-17,Approved,545,34.3,116,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-18,Approved,56.5,21.9,31.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-19,Approved,497,16.2,65.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-20,Approved,592,33.4,116,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-21,Approved,322,28,148,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-03-22,Approved,368,33.2,157,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-15,Approved,78.5,4.9,7.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-16,Approved,43.1,4.7,6.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-17,Approved,13.6,4.6,5.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-18,Approved,6,4.5,4.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-19,Approved,93.3,4.5,6.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-20,Approved,26.6,4.8,5.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-21,Approved,13.2,4.6,5.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-22,Approved,5.5,4.2,4.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-23,Approved,4.5,4,4.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-24,Approved,4.1,3.7,3.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-25,Approved,3.8,3.4,3.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-26,Approved,42.7,3.2,3.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-27,Approved,62.2,2.9,8.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-28,Approved,140,4,13.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-29,Approved,95.7,4.1,9.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-11-30,Approved,200,4.3,9.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-01,Approved,94.3,6,8.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-02,Approved,10.1,6,7.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-03,Approved,124,7.1,11.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-04,Approved,146,9.4,14.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-05,Approved,61.4,10.2,14.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-06,Approved,106,9.3,11.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-07,Approved,33.4,9.4,10.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-08,Approved,43.4,10.3,11.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-09,Approved,16.4,10,11,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-10,Approved,67.5,9.6,10.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-11,Approved,47.4,11.2,14.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-12,Approved,107,6.4,10.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-13,Approved,24.3,2.7,4.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-14,Approved,11.2,2.6,3.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-15,Approved,14.8,2.8,6.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-16,Approved,24.7,3.6,5.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-17,Approved,78.2,2.9,9.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-18,Approved,147,6.4,13.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-19,Approved,132,5.4,14.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-20,Approved,70.1,3.6,7.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-21,Approved,72,4.6,8.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-22,Approved,18.5,4.8,6.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-23,Approved,5.7,3.4,4.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-24,Approved,10.4,3.4,4.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-25,Approved,4.6,2.7,3.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-26,Approved,5,2.7,3.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-27,Approved,4.3,2.3,2.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-28,Approved,29.1,2.2,2.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-29,Approved,35.3,3.3,4.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-30,Approved,15.1,3.6,4.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2018-12-31,Approved,3.7,2.2,2.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-01,Approved,2.3,1.6,1.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-02,Approved,3,1.5,1.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-03,Approved,29.2,1.9,2.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-04,Approved,39.9,3.1,7.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-05,Approved,10.5,3.1,4.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-06,Approved,6.4,2.7,3.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-07,Approved,46.8,2.6,4.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-08,Approved,26.1,3.8,5.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-09,Approved,30.8,3.5,5.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-10,Approved,72.3,4.9,7.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-11,Approved,10.6,5,6.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-12,Approved,13.2,4.9,5.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-13,Approved,8.2,3.9,4.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-14,Approved,9.6,3.9,4.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-15,Approved,7.5,3.5,3.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-16,Approved,35.4,3.6,5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-17,Approved,44.1,3.4,5.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-18,Approved,12.6,3.3,5.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-19,Approved,5.6,2.6,3.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-20,Approved,86,3,4.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-21,Approved,5.5,3.3,4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-22,Approved,6.5,2.7,3.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-23,Approved,21,2.7,3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-24,Approved,3.8,2.9,3.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-25,Approved,3.2,2.8,3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-26,Approved,5.6,2.6,3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-27,Approved,12.1,2.8,4.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-28,Approved,21,3.2,4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-29,Approved,3.7,1.9,3.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-30,Approved,4,1.4,1.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-01-31,Approved,365,1.5,4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-01,Approved,49.5,2.7,4.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-02,Approved,122,2.7,8.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-03,Approved,12.9,4.8,6.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-04,Approved,91.1,4,7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-05,Approved,131,4.6,7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-06,Approved,80.9,5.1,7.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-07,Approved,92.6,5.1,16.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-08,Approved,29.4,12.8,15.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-09,Approved,38.8,11.2,12.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-10,Approved,13.4,9.8,11.2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-11,Approved,22.9,9.1,10.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-12,Approved,17.3,5.8,8.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-13,Approved,37.5,5.6,6.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-14,Approved,37.8,4,9.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-15,Approved,126,2.7,5.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-16,Approved,12.2,1.6,3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-17,Approved,7.5,1.1,1.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-18,Approved,8.5,1.4,2.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-19,Approved,3.6,1.4,1.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-20,Approved,7.8,1.3,2.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-21,Approved,6,1.3,2.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-22,Approved,6.5,1.5,1.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-23,Approved,7.9,1.3,1.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-24,Approved,9.1,1.5,3.1,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-25,Approved,12,2.6,5.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-26,Approved,24.4,4.9,10,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-27,Approved,22.1,8.5,9.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-02-28,Approved,29.5,9.1,13.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-01,Approved,21.8,12.5,17.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-02,Approved,28.2,15,16.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-03,Approved,22.2,1.8,14.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-04,Approved,7.4,1.2,2,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-05,Approved,15.1,1.2,4.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-06,Approved,164,2.3,8.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-07,Approved,75.3,2.7,9.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-08,Approved,39.1,5.4,13.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-09,Approved,30.5,4.3,11.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-10,Approved,15.3,8.4,11.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-11,Approved,33.4,7.9,10.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-12,Approved,13.4,8,9.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-13,Approved,20,7.3,9.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-14,Approved,138,7.5,11,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-15,Approved,160,9.4,14.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-16,Approved,14.9,9.6,11.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-17,Approved,14.3,10,10.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-18,Approved,28.1,10.3,11.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-19,Approved,72.5,10.7,12.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-20,Approved,68.9,10.8,13,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-21,Approved,13.6,11.6,12.4,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-22,Approved,31.7,12.1,12.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-23,Approved,16.7,5.8,7.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-24,Approved,12.4,5.4,5.9,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-25,Approved,8.8,3.4,5.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-26,Approved,17.2,3.7,4.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-27,Approved,9.1,5.4,7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-28,Approved,7.6,3,4.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-29,Approved,4.5,2.6,3.3,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-30,Approved,8.7,2.3,2.8,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-03-31,Approved,3.7,2.1,2.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-04-01,Approved,5.2,2.1,2.7,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-04-02,Approved,4.2,1.9,2.5,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06736600,2019-04-03,Approved,7.3,1.7,2.6,Big Thompson R at Jasper Lake Rd nr Drake,-105.256192,40.415647,FALSE
+USGS-06752450,2026-07-30,Provisional,36.2,10.9,18,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-07-31,Provisional,37.2,9.5,16.2,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-01,Provisional,31.4,6.8,16.1,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-02,Provisional,46.1,6.2,16.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-03,Provisional,74.8,9.3,17.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-04,Provisional,63.3,10.5,17.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-05,Provisional,103,19,30.1,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-06,Provisional,54,20.7,32.2,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-07,Provisional,74.8,16,39.7,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-08,Provisional,98.6,16.5,40.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-09,Provisional,65.3,26.1,42.2,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-10,Provisional,64,21.3,35,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-11,Provisional,59,23.3,37.7,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-12,Provisional,134,41,63.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-13,Provisional,272,41.8,64.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-14,Provisional,204,74.9,142,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-15,Provisional,90.8,52.2,65.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-16,Provisional,184,46.4,60,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-17,Provisional,72.1,46.3,55.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-18,Provisional,75.2,28.3,39.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-25,Provisional,41.2,9,18.2,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-26,Provisional,54.2,10.7,23.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-27,Provisional,70.5,14,23,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-28,Provisional,61.2,12.5,25.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-29,Provisional,47.9,12.2,25.8,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-30,Provisional,65.6,17,30.3,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-08-31,Provisional,98.6,34.1,52.3,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-03,Provisional,52.4,17.9,32.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-04,Provisional,62.8,20.8,32.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-05,Provisional,48.1,17.6,27,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-06,Provisional,59.3,17.9,26.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-07,Provisional,51.3,15.4,24.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-08,Provisional,38.2,12.9,22.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-09,Provisional,37.7,11.9,20.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-10,Provisional,32.3,16.7,21.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-11,Provisional,26.1,15.6,19.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-12,Provisional,35.9,12.9,16,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-13,Provisional,26.6,10.3,14.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-14,Provisional,33.3,10.6,15.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-15,Provisional,44,11.7,16.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-16,Provisional,27,9.2,16.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-17,Provisional,51.2,8.8,16.1,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-18,Provisional,38.6,10.9,16.3,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-19,Provisional,26.5,12.2,16.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-20,Provisional,57,9.8,16.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-21,Provisional,36,14.5,22.2,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-22,Provisional,58.5,22.7,30.1,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-23,Provisional,38.3,11.7,20.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-25,Provisional,35.8,8.2,11.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-26,Provisional,16.5,8,10.9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-27,Provisional,16.4,7.6,10.1,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-28,Provisional,14,7.1,8.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-29,Provisional,12.1,7.2,9.1,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-09-30,Provisional,11.8,7.7,9,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-01,Provisional,32,5.3,7.7,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-02,Provisional,28.1,5.9,13.3,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-03,Provisional,23.6,5.2,10.8,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-04,Provisional,26.2,5.2,11.4,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-05,Provisional,28.1,6.2,11.5,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-06,Provisional,24.5,6.5,12.8,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-07,Provisional,25.4,8.4,12.6,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752450,2026-10-08,Provisional,38.7,15.9,21,Cache la Poudre R abv N 11th Ave at Greeley,-104.701289,40.442003,TRUE
+USGS-06752480,2026-07-31,Provisional,25.8,5.5,10.7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-01,Provisional,25.4,4.7,12,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-02,Provisional,17.1,2.7,8.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-03,Provisional,38,4.6,9.1,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-04,Provisional,15.1,6.2,8.6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-05,Provisional,12.2,5.1,6.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-06,Provisional,14.2,2.6,5.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-07,Provisional,19.2,2.6,6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-08,Provisional,22.3,2,7.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-09,Provisional,22.4,5.2,8.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-10,Provisional,12.9,6.9,9.3,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-11,Provisional,18.7,5.7,8.3,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-12,Provisional,32.3,5.7,8.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-13,Provisional,372,7,10,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-14,Provisional,252,39.5,70.3,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-15,Provisional,101,25.3,56.9,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-16,Provisional,48.6,17.4,36.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-17,Provisional,91,16.7,26.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-18,Provisional,64.8,14.6,20.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-19,Provisional,69.5,9.8,18.9,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-20,Provisional,39.1,4.9,15.3,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-21,Provisional,44,2.5,14.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-22,Provisional,68.1,3.2,13.1,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-23,Provisional,39.6,2.6,11.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-24,Provisional,40.3,9.3,13.6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-25,Provisional,21.5,7.8,11.6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-26,Provisional,43.6,6.4,11,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-27,Provisional,25,6.2,12.1,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-28,Provisional,33.5,7.2,11.5,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-29,Provisional,14.2,7.2,9.7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-08-31,Provisional,19.1,9.3,12.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-01,Provisional,22.7,11,14.7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-02,Provisional,45.6,7,16.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-03,Provisional,44,8.7,18.3,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-04,Provisional,60.8,12,17.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-05,Provisional,32.3,9.9,14.6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-06,Provisional,79.4,6.7,12.9,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-07,Provisional,22.4,8.4,12.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-08,Provisional,34.7,7.4,12.7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-09,Provisional,32.6,7.4,12.9,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-10,Provisional,36,6.6,11,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-11,Provisional,21.7,5.7,11.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-12,Provisional,25,7.2,12.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-13,Provisional,18.3,5.9,9.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-14,Provisional,17.2,3.7,8.6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-15,Provisional,15.6,5,8.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-16,Provisional,17.6,3.5,5.7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-17,Provisional,12.4,2.7,5,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-18,Provisional,45.5,2.8,7.5,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-19,Provisional,11.1,1.9,4.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-20,Provisional,10.1,2.3,4.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-21,Provisional,16.9,3.8,6.6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-22,Provisional,15.6,2.2,4.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-23,Provisional,8.3,1.8,3.4,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-24,Provisional,14.8,1.5,3.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-26,Provisional,18.2,1.3,3.5,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-27,Provisional,10.6,2.1,3.5,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-28,Provisional,8.5,1.9,3.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-09-30,Provisional,13.4,2,4.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-01,Provisional,17.7,1.8,6,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-02,Provisional,20.2,3.8,8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-03,Provisional,23.5,3,10.8,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-04,Provisional,17.7,3.8,7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-05,Provisional,15.8,4.6,6.1,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-06,Provisional,19.3,3.6,6.2,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-07,Provisional,15.2,3.6,7.1,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-08,Provisional,22.4,5.4,7.9,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-09,Provisional,16.2,5.1,7.7,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-10,Provisional,13.1,4.6,7.5,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
+USGS-06752480,2026-10-11,Provisional,14,6,8.3,Cache la Poudre R below Hwy 85 at Greeley,-104.677203,40.422719,TRUE
