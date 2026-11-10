@@ -65,8 +65,8 @@ h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:1.6rem
   height:clamp(380px,62vh,680px);touch-action:none}
 canvas#map{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
 canvas#map.drag{cursor:grabbing}
-.hud{position:absolute;left:14px;top:12px;pointer-events:none;display:flex;flex-direction:column;gap:2px;
-  text-shadow:0 0 10px var(--ground),0 0 3px var(--ground)}
+.hud{position:absolute;left:10px;top:8px;pointer-events:none;display:flex;flex-direction:column;gap:2px;padding:6px 12px;border-radius:12px;
+  background:color-mix(in srgb, var(--ground) 82%, transparent);text-shadow:0 0 10px var(--ground),0 0 3px var(--ground)}
 .hud .date{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(1.8rem,4.4vw,3rem);line-height:1}
 .hud .acres{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--dim)}
 .hud .acres b{color:var(--text);font-weight:500}
@@ -97,6 +97,7 @@ input[type=range]{width:100%;margin:0;accent-color:var(--accent);height:26px}
 .chip{border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:999px;padding:5px 11px;
   font:500 .76rem 'DM Sans',sans-serif;cursor:pointer}
 .chip:hover{border-color:var(--fire-mid)}
+.chip.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .stat .n{font-family:'DM Mono',monospace;font-size:1.35rem;font-weight:500;font-variant-numeric:tabular-nums}
 .stat .l{font-size:.72rem;color:var(--dim);margin-top:2px;line-height:1.35}
@@ -147,6 +148,21 @@ details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--
 .tag.real{background:var(--accent);color:var(--accent-ink)}
 .tag.derived{background:var(--chip);color:var(--text);border:1px solid var(--border)}
 .tag.model{background:transparent;color:var(--text);border:1px dashed var(--fire-mid)}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:10px;margin:8px 0 12px}
+.why div{border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:.82rem;line-height:1.5;background:var(--surface)}
+.why b{display:block;font-size:.9rem;margin-bottom:2px}
+.why .tbd{color:var(--dim);font-size:.76rem}
+.trbox{position:relative;height:410px}
+canvas#trChart{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;touch-action:none}
+.trsum{margin-top:10px;font-size:.86rem;line-height:1.55}
+.trsum table{border-collapse:collapse;font-size:.8rem;width:100%;max-width:640px;margin:0 0 8px}
+.trsum th,.trsum td{text-align:left;padding:5px 12px 5px 0;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
+.trsum th{color:var(--dim);font-weight:600;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
+.trsum .verdict{border-left:4px solid var(--fire-mid);background:var(--chip);border-radius:0 10px 10px 0;padding:10px 14px;margin:6px 0}
+.trsum .watch{color:var(--dim);font-size:.78rem}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.76rem;color:var(--dim);margin:2px 0 4px}
+.key i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.wqdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--tq1);border:1px solid var(--label)}
 @media (max-width:640px){.hint{display:none}}
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
 </style>
@@ -191,6 +207,25 @@ details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--
     <div class="chips" id="chips"></div>
   </div>
 
+  <div class="panel" id="tracker">
+    <div class="mhead">
+      <h2 style="margin:0;font-size:1.45rem">Do dam analogs help? Streams above vs below each project</h2>
+      <div class="tabs" role="tablist" aria-label="Water-quality variable">
+        <button role="tab" id="trTabNit" aria-selected="true">Nitrate</button>
+        <button role="tab" id="trTabPh" aria-selected="false">pH</button>
+      </div>
+    </div>
+    <p class="guide-intro" style="margin:0 0 4px">Volunteers with the Coalition for the Poudre River Watershed sample paired stations above and below stream reaches in the Cameron Peak burn, about monthly. If dam analogs improve water, the <b>below</b> station should look better than the <b>above</b> station <i>after</i> the structures go in. This chart lets you check that against the real samples.</p>
+    <div class="why">
+      <div><b>Nitrate: how it affects water quality</b>A form of nitrogen that plants and algae feed on. Burned soils can release extra nitrate and fewer plants remain to take it up, so burn-scar streams can carry more. Too much feeds algae that use up the oxygen fish need and can foul drinking-water supplies (the U.S. drinking-water limit is 10 mg/L as nitrogen). Slow, low-oxygen pond sediment lets bacteria turn nitrate into nitrogen gas, so beaver-style ponds are <i>expected</i> to lower nitrate downstream. That expectation is the hypothesis here, not a finding.</div>
+      <div><b>pH: how it affects water quality</b>A measure of how acidic (below 7) or basic (above 7) the water is. Most stream life does best between about 6.5 and 9, the range used in Colorado and EPA aquatic-life standards. Ash is alkaline and can push burn-scar water up, and low pH can free metals such as aluminum and copper that harm fish. pH also changes how drinking-water treatment works. There is no strong expectation that dam analogs change pH; here it mainly checks whether either the burn or the structures push water outside the usual range.</div>
+    </div>
+    <div class="presets" id="trSites"></div>
+    <div class="key" id="trKey"></div>
+    <div class="trbox"><canvas id="trChart" aria-label="Paired above and below samples over time, with construction shaded and the difference below" role="img"></canvas></div>
+    <div class="trsum" id="trSum"></div>
+  </div>
+
   <div class="panel" id="measure">
     <div class="mhead">
       <div class="tabs" role="tablist" aria-label="Measured variable">
@@ -211,9 +246,10 @@ details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--
   <div class="panel">
     <div class="legend" id="legend">
       <label><input type="checkbox" id="lFire" checked><span>Burned area</span><i class="fbar"></i></label>
-      <label><input type="checkbox" id="lStream" checked><span>River turbidity: clear</span><i class="bar"></i><span>murky</span></label>
+      <label><input type="checkbox" id="lStream"><span>River turbidity: clear</span><i class="bar"></i><span>murky</span></label>
       <label><input type="checkbox" id="lDam" checked><span>Dam records</span></label>
       <label><input type="checkbox" id="lSight" checked><span>Beaver sightings</span></label>
+      <label><input type="checkbox" id="lWq" checked><i class="wqdot"></i><span>Nitrate / pH samples</span><i class="bar" style="width:60px"></i></label>
       <label><input type="checkbox" id="lSens" checked><i class="dia"></i><span>Turbidity sensors</span></label>
       <label><input type="checkbox" id="lGauge" checked><i class="rng"></i><span>USGS discharge gauges</span></label>
       <label><input type="checkbox" id="lLab" checked><span>Labels</span></label>
@@ -274,21 +310,35 @@ details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--
   </div>
 
   <div class="panel">
-    <h3>3. What would make the comparison possible</h3>
+    <h3>3. Nitrate, pH, and the above-vs-below comparison</h3>
     <ul>
+      <li><b>The comparison exists, but the &ldquo;after&rdquo; side is almost empty.</b> CPRW volunteers sample paired stations above and below project reaches about monthly. At Little Beaver Creek there are 22 paired samples before construction (Dec 2021 to Aug 2024) and only <b>3 after</b>, all from July to September 2025. At the South Fork there are 4 before (May to Aug 2024) and 3 after. At Sheep Creek, built in summer/fall 2025, there are none after: the samples end in September 2025.</li>
+      <li><b>What the samples show so far is nothing.</b> The median below-minus-above differences are tiny before and after at both sites (nitrate within 0.03 mg/L, well under the 0.35 mg/L gap seen by chance at pairs with no project; pH within 0.09 units, about the size of the 0.07-unit chance gap). With this few samples no conclusion is possible, for or against.</li>
+      <li><b>The pairs may not bracket the structures.</b> The project pages do not say where, between or beyond the two stations, the dam analogs were placed. The South Fork page gives no location at all.</li>
+      <li><b>There is no confirmed untreated control.</b> Fish Creek, Lazy D and Ratville have the same above/below design and no project known to me, so they show how much the stations differ by chance. I cannot confirm they were untouched.</li>
+      <li><b>Seasons are mismatched.</b> The &ldquo;before&rdquo; samples cover every season, and the &ldquo;after&rdquo; samples are one summer. Nitrate and pH both swing with season and flow, and the burn scar keeps recovering, so a before-and-after at one site cannot isolate the structures.</li>
+      <li><b>Expectations are not results.</b> That ponds lower nitrate is a widely held expectation from how pond sediments work. Nothing on this page measures it. Nitrate here is as reported by the labs (the form is not stated), 56 non-detect or unreported results were dropped, and the volunteer program&rsquo;s own quality procedures were not reviewed.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>4. What would make the comparison possible</h3>
+    <ul>
+      <li>More after-construction samples at the same paired stations (a full year, all seasons), and the exact location of each structure relative to the stations.</li>
       <li>Dates <b>and coordinates</b> for each BDA or beaver release, for example from CPRW or Forest Service as-built maps, or from the researchers&rsquo; own field records.</li>
       <li>Turbidity measured just above and just below the structures, both before and after they went in, ideally with a comparable untreated reach.</li>
       <li>Raw turbidity records from Fort Collins Utilities and CSU&rsquo;s post-fire monitoring, which exist but are not in the public data used here.</li>
     </ul>
   </div>
 
-  <div class="callout"><p><b>Bottom line.</b> What you see is real: the fire&rsquo;s mapped perimeters, documented beaver records, and measured turbidity and flow. What you do not see is any record of when beaver structures arrived, so this page does not test whether they affected turbidity.</p></div>
+  <div class="callout"><p><b>Bottom line.</b> What you see is real: the fire&rsquo;s mapped perimeters, documented beaver records, measured turbidity and flow, and paired nitrate and pH samples. What you do not see is a record of when beaver structures arrived or enough after-construction samples, so this page can show you where to look but cannot yet show that dam analogs improved water quality.</p></div>
 </section>
 </div>
 
 <script>
 const DATA = /*DATA*/null;
 const PN = /*PANEL*/null;
+const WQ = /*WQ*/null;
 
 /* ---------- geometry helpers ---------- */
 const LON0 = -105.3, KX = Math.cos(40.75 * Math.PI / 180);
@@ -356,14 +406,14 @@ const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n)
 function hex(h) { h = h.replace('#',''); if (h.length === 3) h = h.split('').map(c => c+c).join(''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)); }
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i]-v)*t));
 const rgb = (c, a=1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
-const readTheme = () => { ['ground','land','ws-edge','stream','casing','tcase','tq0','tq1','tq2','tq3','dot','fire-hot','fire-mid','fire-red','fire-old','fire-scar',
+const readTheme = () => { ['ground','land','ws-edge','stream','casing','tcase','tq0','tq1','tq2','tq3','accent','dot','fire-hot','fire-mid','fire-red','fire-old','fire-scar',
   'beaver','beaver-edge','burn-ring','label','halo','flow','grid','band','dim','text','surface','border'].forEach(k => C[k] = cssv('--' + k)); C.rgb = {};
   ['tq0','tq1','tq2','tq3','fire-hot','fire-mid','fire-red','fire-old','fire-scar'].forEach(k => C.rgb[k] = hex(C[k])); dirty.streams = dirty.fire = dirty.chart = dirty.turb = true; };
 
 /* ---------- canvas / view ---------- */
 const stage = document.getElementById('stage'), cv = document.getElementById('map'), ctx = cv.getContext('2d');
 let W = 0, H = 0, DPR = 1, view = { cx: 0, cy: 0, s: 1 }, fitS = 1;
-const dirty = { streams: true, fire: true, paths: true, chart: true, turb: true };
+const dirty = { streams: true, fire: true, paths: true, chart: true, turb: true, tr: true };
 const layers = { streams: document.createElement('canvas'), fire: document.createElement('canvas'), turb: document.createElement('canvas') };
 let bbox = { x0: 1e9, y0: 1e9, x1: -1e9, y1: -1e9 };
 WS.forEach(p => p.forEach(r => { for (let i = 0; i < r.length; i += 2) { bbox.x0 = Math.min(bbox.x0, r[i]); bbox.x1 = Math.max(bbox.x1, r[i]);
@@ -412,7 +462,7 @@ const ease = t => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
 
 /* ---------- state ---------- */
 const S = { t: 0, playing: false, speed: 1, tab: 'tur', showMax: false,
-  show: { fire: true, stream: true, dam: true, sight: true, sens: true, gauge: true, lab: true }, hover: null, pin: null };
+  show: { fire: true, stream: false, dam: true, sight: true, sens: true, gauge: true, lab: true, wq: true }, hover: null, pin: null };
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const kAt = t => { let k = -1; for (let i = 0; i < FIRE.length; i++) if (FIRE[i].t <= t) k = i; return k; };
 
@@ -537,10 +587,12 @@ function frame(now) {
     beaver(ctx, x, y, size, burned ? .78 : 1, dam);
     if (hov) { ctx.strokeStyle = C.label; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(x, y, size * .95, 0, 6.3); ctx.stroke(); } });
   if (S.show.sight) draw(SITES.filter(s => s.k === 'sight'), false);
+  if (S.show.wq) STN.forEach(st => drawWq(ctx, st, z));
   if (S.show.gauge) USGS.forEach(g => drawGauge(ctx, g, z));
   if (S.show.sens) ROSS.forEach(s => drawSensor(ctx, s, z));
   if (S.show.dam) draw(SITES.filter(s => s.k === 'dam'), true);
   if (dirty.chart || chartT !== S.t) drawChart();
+  if (dirty.tr || trT !== S.t) drawTracker();
 }
 
 /* ---------- loop / transport ---------- */
@@ -553,9 +605,9 @@ function setPlaying(p) { S.playing = p; $('play').textContent = p ? 'Pause' : (S
 /* ---------- UI ---------- */
 const $ = id => document.getElementById(id);
 function caption(t) { const k = kAt(t), nb = sitesBurnSorted.filter(b => b <= t).length, N = SITES.length;
-  if (k < 0) return `Before the fire. ${N} beaver records sit in the watershed. The river is colored by turbidity measured at the CSU sensors (green is clear, dark is murky); stretches far from a sensor stay gray-blue.`;
+  if (k < 0) return `Before the fire. ${N} beaver records sit in the watershed. Dots show nitrate and pH samples; the chart below compares stations above and below dam-analog projects.${S.show.stream ? ' The river is colored by turbidity measured at the CSU sensors (green is clear, dark is murky); stretches far from a sensor stay gray-blue.' : ''}`;
   const f = FIRE[k], growth = k ? f.ac - FIRE[k-1].ac : f.ac, prev = k ? fmtS(FIRE[k-1].t) : null;
-  if (t > T_FIRE_END + 1) return `Recovery period. The fire perimeter is final at ${nf(FIRE[FIRE.length-1].ac)} acres; the burned ground is shown aged. ${nb} of ${N} beaver records are inside the burn. The chart below carries measured turbidity and flow forward to ${fmt(T_END)}.`;
+  if (t > T_FIRE_END + 1) return `Recovery period. The fire perimeter is final at ${nf(FIRE[FIRE.length-1].ac)} acres; the burned ground is shown aged. ${nb} of ${N} beaver records are inside the burn. The comparison below follows nitrate and pH above and below dam-analog projects, and the measured turbidity and flow chart runs to ${fmt(T_END)}.`;
   const late = t > FIRE[FIRE.length - 2].t + 1 && t < FIRE[FIRE.length - 1].t;
   let s = f.kind === 'final perimeter' ? `Final perimeter: ${nf(f.ac)} acres.` : `Latest mapped perimeter: ${fmtS(f.t)}, ${nf(f.ac)} acres` + (prev ? ` (+${nf(growth)} since ${prev}).` : '.');
   if (late) s += ' No perimeters were mapped between Nov 1 and the final one.';
@@ -589,7 +641,7 @@ TOP.forEach(t => { const f = FIRE[t.k], b = document.createElement('button'); b.
 $('play').onclick = () => { if (!S.playing && S.t >= T_END) S.t = 0; setPlaying(!S.playing); };
 $('speed').onchange = e => S.speed = +e.target.value;
 $('scrub').oninput = e => { S.t = tOf(+e.target.value / 1000); setPlaying(false); syncUI(); };
-[['lFire','fire'],['lStream','stream'],['lDam','dam'],['lSight','sight'],['lSens','sens'],['lGauge','gauge'],['lLab','lab']].forEach(([id, k]) => $(id).onchange = e => { S.show[k] = e.target.checked; markDirty(); });
+[['lFire','fire'],['lStream','stream'],['lDam','dam'],['lSight','sight'],['lSens','sens'],['lGauge','gauge'],['lLab','lab'],['lWq','wq']].forEach(([id, k]) => $(id).onchange = e => { S.show[k] = e.target.checked; markDirty(); });
 addEventListener('keydown', e => { if (e.code === 'Space' && e.target === document.body && !$('viewAnim').hidden) { e.preventDefault(); $('play').click(); } });
 
 /* ---------- measurements panel ---------- */
@@ -682,16 +734,19 @@ cv.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(), 
   else hoverAt(mx, my); });
 cv.addEventListener('pointerup', e => { ptrs.delete(e.pointerId); cv.classList.remove('drag'); pinch0 = 0;
   if (moved < 6) { const r = cv.getBoundingClientRect(), s = hit(e.clientX - r.left, e.clientY - r.top);
+    if (s && s.kind === 'wq') { const pr = PAIR_OF[s.id]; if (pr) { TR.key = pr.key; renderTr(); } showTip(s, e.clientX - r.left, e.clientY - r.top); return; }
     if (s && (s.kind === 'tur' || s.kind === 'q')) { s.on = !s.on; if (s.on && S.tab !== s.kind) setTab(s.kind); else { renderPick(); dirty.chart = true; syncUI(); } showTip(s, e.clientX - r.left, e.clientY - r.top); return; }
     S.pin = s === S.pin ? null : s; showTip(S.pin, e.clientX - r.left, e.clientY - r.top); } });
 cv.addEventListener('pointerleave', () => { if (!S.pin) { S.hover = null; $('tip').style.display = 'none'; } });
 function hit(mx, my) { let best = null, bd = 14;
   const test = (s, ok) => { if (!ok) return; const d = Math.hypot(SX(s.x) - mx, SY(s.y) - my); if (d < bd) { bd = d; best = s; } };
-  SITES.forEach(s => test(s, S.show[s.k === 'dam' ? 'dam' : 'sight'])); USGS.forEach(s => test(s, S.show.gauge)); ROSS.forEach(s => test(s, S.show.sens)); return best; }
+  SITES.forEach(s => test(s, S.show[s.k === 'dam' ? 'dam' : 'sight'])); USGS.forEach(s => test(s, S.show.gauge)); ROSS.forEach(s => test(s, S.show.sens)); STN.forEach(s => test(s, S.show.wq)); return best; }
 function hoverAt(mx, my) { const s = hit(mx, my); S.hover = s; if (!S.pin) showTip(s, mx, my); cv.style.cursor = s ? 'pointer' : ''; }
 function showTip(s, mx, my) { const t = $('tip'); if (!s) { t.style.display = 'none'; return; }
   const d = Math.floor(S.t);
-  if (s.kind === 'tur' || s.kind === 'q') { const v = valAt(s, d), m = META[s.kind];
+  if (s.kind === 'wq') { const parts = ['nit','ph'].map(k => { const m = latestSample(s.a[k], d, 90); return m ? `${WQ_META[k].name} ${m[1].toFixed(2)}${k === 'nit' ? ' mg/L' : ''} (${fmt(m[0])})` : null; }).filter(Boolean), pr = PAIR_OF[s.id];
+    t.innerHTML = `<b>${s.name}</b><div class="m">${s.org} station${s.burn ? ' &middot; inside the fire perimeter' : ''}</div><div>${parts.length ? parts.join('<br>') : 'no sample in the 90 days before this date'}</div><div class="m">${s.a.nit.length} nitrate and ${s.a.ph.length} pH samples, 2015&ndash;2025</div>${pr ? `<div class="m">${pr.site} pair (${pr.aboveIds.includes(s.id) ? 'above' : 'below'}); click to open it in the chart</div>` : ''}`; }
+  else if (s.kind === 'tur' || s.kind === 'q') { const v = valAt(s, d), m = META[s.kind];
     const val = v == null ? 'no data on this date' : `${v >= 100 ? nf(v) : v.toFixed(2)} ${m.unit} (daily ${s.kind === 'tur' ? 'median' : 'mean'}, ${fmtS(d)})`;
     const extra = s.kind === 'tur' ? (s.burn != null ? `<div class="m">${s.burn}% of its ${nf(s.basin)} km&sup2; upstream basin lies inside the final fire perimeter</div>` : '')
                                    : (s.da ? `<div class="m">Drainage area about ${nf(s.da)} km&sup2;</div>` : '');
@@ -707,9 +762,120 @@ function scaleBar() { const km = 80 / (view.s / 111.32);
   $('scale').innerHTML = `<i style="width:${pxw}px"></i>${nice} km`; }
 setInterval(scaleBar, 400);
 
+/* ---------- nitrate / pH samples and the above-vs-below tracker ---------- */
+const STN = WQ.stations.map(s => ({ kind: 'wq', id: s.id, name: s.name, org: s.org, x: wx(s.lon), y: wy(s.lat), burn: s.burn, a: { nit: s.nit, ph: s.ph } }));
+const STN_BY_ID = Object.fromEntries(STN.map(s => [s.id, s]));
+const asArr = v => Array.isArray(v) ? v : [v];
+const mergeSeries = (ids, key) => { const m = new Map(); ids.forEach(id => { const st = STN_BY_ID[id]; if (st) st.a[key].forEach(([t, v]) => { const e = m.get(t) || [0, 0]; e[0] += v; e[1]++; m.set(t, e); }); });
+  return [...m].map(([t, [sum, n]]) => [t, sum / n]).sort((a, b) => a[0] - b[0]); };
+const PAIRS = WQ.pairs.map(p => { const above = asArr(p.above), below = asArr(p.below);
+  const o = { ...p, aboveIds: above, belowIds: below, ids: [...above, ...below], A: { nit: mergeSeries(above, 'nit'), ph: mergeSeries(above, 'ph') }, B: { nit: mergeSeries(below, 'nit'), ph: mergeSeries(below, 'ph') } };
+  if (p.project) { o.t0 = dayOf(p.project.start); o.t1 = dayOf(p.project.end); } return o; });
+const PAIR_OF = {}; PAIRS.forEach(p => p.ids.forEach(id => PAIR_OF[id] = p));
+const WQ_META = { nit: { name: 'Nitrate', unit: 'mg/L' }, ph: { name: 'pH', unit: '' } };
+const wqPos = (k, v) => k === 'nit' ? clamp(Math.log10(Math.max(v, 0.1) / 0.1) / 2.5, 0, 1) : clamp(Math.max(6.5 - v, v - 9, 0) / 1.5, 0, 1);
+const wqCol = (k, v, a = 1) => tqColAt(wqPos(k, v), a);
+const latestSample = (arr, day, maxAge = 60) => { for (let i = arr.length - 1; i >= 0; i--) { if (arr[i][0] <= day) return day - arr[i][0] <= maxAge ? arr[i] : null; } return null; };
+const TR = { key: 'lbc', param: 'nit' }; let trT = null, TW = 0, TH = 0;
+const pairDiffs = (p, k) => { const A = new Map(p.A[k]); return p.B[k].filter(([t]) => A.has(t)).map(([t, v]) => ({ t, a: A.get(t), b: v, d: v - A.get(t) })); };
+const med = a => { if (!a.length) return NaN; const q = [...a].sort((x, y) => x - y), m = q.length >> 1; return q.length % 2 ? q[m] : (q[m-1] + q[m]) / 2; };
+const NOISE = {}; ['nit', 'ph'].forEach(k => { const ds = []; PAIRS.filter(p => !p.project).forEach(p => pairDiffs(p, k).forEach(r => ds.push(Math.abs(r.d)))); NOISE[k] = med(ds); });
+
+function drawWq(c, st, z) { const x = SX(st.x), y = SY(st.y); if (x < -20 || y < -20 || x > W + 20 || y > H + 20) return;
+  const day = Math.floor(S.t), smp = latestSample(st.a[TR.param], day), pr = PAIR_OF[st.id], sel = pr && pr.key === TR.key, r = (sel ? 6 : 4) * z;
+  if (pr) { c.strokeStyle = C.accent; c.lineWidth = sel ? 2.4 : 1.2; c.setLineDash(sel ? [] : [2, 2]); c.beginPath(); c.arc(x, y, r + 3, 0, 6.3); c.stroke(); c.setLineDash([]); }
+  c.beginPath(); c.arc(x, y, smp ? r : r * .6, 0, 6.3);
+  if (smp) { c.fillStyle = wqCol(TR.param, smp[1], day - smp[0] <= 30 ? 1 : .55); c.fill(); }
+  c.strokeStyle = C.label; c.lineWidth = S.hover === st ? 2 : 1; c.stroke();
+  if (sel && view.s / fitS > 6) { c.font = '600 10px "DM Sans",sans-serif'; c.textAlign = 'left'; c.textBaseline = 'middle'; c.lineWidth = 3; c.strokeStyle = C.halo; c.fillStyle = C.label;
+    const t = pr.aboveIds.includes(st.id) ? 'above' : 'below'; c.strokeText(t, x + r + 6, y); c.fillText(t, x + r + 6, y); } }
+function focusPair(p) { const sts = p.ids.map(i => STN_BY_ID[i]).filter(Boolean); if (!sts.length) return;
+  view.cx = sts.reduce((a, s) => a + s.x, 0) / sts.length; view.cy = sts.reduce((a, s) => a + s.y, 0) / sts.length; view.s = fitS * 28; markDirty(); }
+
+const TRX = { a: dayOf('2021-10-01'), b: dayOf('2025-12-31') };
+function sizeTr() { const cvs = $('trChart'), r = cvs.getBoundingClientRect(); TW = r.width; TH = r.height; cvs.width = Math.round(TW * DPR); cvs.height = Math.round(TH * DPR); dirty.tr = true; }
+function drawTracker() {
+  if (TW < 2 || TH < 2) return; trT = S.t; dirty.tr = false;
+  const c = $('trChart').getContext('2d'), p = PAIRS.find(q => q.key === TR.key), k = TR.param, A = p.A[k], B = p.B[k], diffs = pairDiffs(p, k);
+  c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, TW, TH);
+  const L = 54, R = 14, T = 14, Bm = 26, gap = 26, avail = TH - T - Bm - gap, H1 = avail * .62, H2 = avail - H1, y1a = T, y1b = T + H1, y2a = y1b + gap, y2b = y2a + H2;
+  const X = t => L + (t - TRX.a) / (TRX.b - TRX.a) * (TW - L - R);
+  let lo, hi; if (k === 'ph') { lo = 6; hi = 9.5; } else { lo = 0; hi = Math.max(.5, ...A.map(r => r[1]), ...B.map(r => r[1])) * 1.12; }
+  const Y1 = v => y1b - (v - lo) / (hi - lo) * H1;
+  const dmax = Math.max(k === 'ph' ? .3 : .15, ...diffs.map(r => Math.abs(r.d))) * 1.15, ym = (y2a + y2b) / 2, Y2 = v => ym - v / dmax * (H2 / 2);
+  c.font = '10px "DM Mono",monospace'; c.textBaseline = 'middle';
+  // construction season
+  if (p.project) { const xa = X(p.t0), xb = X(p.t1); c.fillStyle = C.band; c.fillRect(xa, y1a, xb - xa, y2b - y1a);
+    c.fillStyle = C.dim; c.font = '600 10px "DM Sans",sans-serif'; c.textAlign = xa > TW - 190 ? 'right' : 'left'; c.textBaseline = 'top';
+    c.fillText(p.project.label, xa > TW - 190 ? xb : xa + 4, y1a + 2); c.font = '10px "DM Mono",monospace'; }
+  if (k === 'ph') { c.fillStyle = 'rgba(40,160,90,.09)'; c.fillRect(L, Y1(9), TW - L - R, Y1(6.5) - Y1(9)); c.fillStyle = C.dim; c.textAlign = 'right'; c.textBaseline = 'bottom'; c.fillText('6.5–9: usual aquatic-life range', TW - R - 4, Y1(6.5) - 2); }
+  // y grid (top pane)
+  const nt = 4; c.textAlign = 'right'; c.textBaseline = 'middle';
+  for (let i = 0; i <= nt; i++) { const v = lo + (hi - lo) * i / nt, y = Y1(v); c.strokeStyle = C.grid; c.lineWidth = 1; c.beginPath(); c.moveTo(L, y); c.lineTo(TW - R, y); c.stroke(); c.fillStyle = C.dim; c.fillText(v.toFixed(k === 'ph' ? 1 : (hi < 2 ? 2 : 1)), L - 6, y); }
+  c.save(); c.translate(11, (y1a + y1b) / 2); c.rotate(-Math.PI / 2); c.textAlign = 'center'; c.fillText(k === 'nit' ? 'Nitrate (mg/L)' : 'pH', 0, 0); c.restore();
+  // diff pane frame
+  c.strokeStyle = C.grid; c.beginPath(); c.moveTo(L, y2a); c.lineTo(TW - R, y2a); c.moveTo(L, y2b); c.lineTo(TW - R, y2b); c.stroke();
+  c.strokeStyle = C.dim; c.lineWidth = 1; c.beginPath(); c.moveTo(L, ym); c.lineTo(TW - R, ym); c.stroke();
+  c.fillStyle = C.dim; c.textAlign = 'right'; c.fillText('0', L - 6, ym); c.fillText('+' + dmax.toFixed(2), L - 6, y2a + 6); c.fillText('−' + dmax.toFixed(2), L - 6, y2b - 6);
+  c.save(); c.translate(11, (y2a + y2b) / 2); c.rotate(-Math.PI / 2); c.textAlign = 'center'; c.fillText('below − above', 0, 0); c.restore();
+  // x axis
+  c.textAlign = 'center'; c.textBaseline = 'top';
+  for (let y = 2022; y <= 2025; y++) { const x = X(dayOf(y + '-01-01')); c.strokeStyle = C.grid; c.beginPath(); c.moveTo(x, y1a); c.lineTo(x, y2b); c.stroke(); c.fillStyle = C.dim; c.fillText(String(y), x, y2b + 6); }
+  // series: played part solid, future faint
+  const xc = X(clamp(S.t, TRX.a, TRX.b));
+  const draw = (alpha) => {
+    [[A, C.dim], [B, C.accent]].forEach(([arr, col]) => { c.globalAlpha = alpha; c.strokeStyle = col; c.fillStyle = col; c.lineWidth = 1.6; c.beginPath();
+      arr.forEach(([t, v], i) => { const x = X(t), y = Y1(v); i ? c.lineTo(x, y) : c.moveTo(x, y); }); c.stroke();
+      arr.forEach(([t, v]) => { c.beginPath(); c.arc(X(t), Y1(v), 2.8, 0, 6.3); c.fill(); }); });
+    diffs.forEach(r => { const x = X(r.t), y = Y2(r.d); c.fillStyle = k === 'nit' ? (r.d < 0 ? rgb(C.rgb.tq0) : rgb(C.rgb.tq2)) : C.dim; c.fillRect(x - 2.5, Math.min(ym, y), 5, Math.max(1, Math.abs(y - ym))); });
+    c.globalAlpha = 1; };
+  [[L, xc, 1], [xc, TW - R, .25]].forEach(([a, b, al]) => { c.save(); c.beginPath(); c.rect(a, y1a, Math.max(0, b - a), y2b - y1a + 1); c.clip(); draw(al); c.restore(); });
+  // medians before / after
+  if (p.project) { const seg = (rows, xa, xb, label) => { if (rows.length < 1) return; const m = med(rows.map(r => r.d)), y = Y2(m); c.setLineDash([5, 3]); c.strokeStyle = C.text; c.lineWidth = 1.3; c.beginPath(); c.moveTo(X(xa), y); c.lineTo(X(xb), y); c.stroke(); c.setLineDash([]);
+      c.font = '600 10px "DM Mono",monospace'; c.textBaseline = 'bottom'; const txt = label + ' ' + (m >= 0 ? '+' : '\u2212') + Math.abs(m).toFixed(2), right = X(xb) > TW - 130;
+      c.textAlign = right ? 'right' : 'left'; const tx = right ? X(xb) : X(xa) + 3, ty = y - 4; c.lineWidth = 3; c.strokeStyle = C.surface; c.strokeText(txt, tx, ty); c.fillStyle = C.text; c.fillText(txt, tx, ty); };
+    const bef = diffs.filter(r => r.t < p.t0), aft = diffs.filter(r => r.t > p.t1);
+    seg(bef, bef.length ? bef[0].t : TRX.a, p.t0, 'median before'); if (aft.length) seg(aft, aft[0].t - 6, aft[aft.length - 1].t + 6, 'after (n=' + aft.length + ')'); }
+  // cursor
+  if (S.t >= TRX.a && S.t <= TRX.b) { c.strokeStyle = C.text; c.lineWidth = 1.4; c.beginPath(); c.moveTo(xc, y1a); c.lineTo(xc, y2b); c.stroke();
+    c.font = '500 10px "DM Mono",monospace'; c.textBaseline = 'top'; c.textAlign = xc > TW - 90 ? 'right' : 'left'; c.lineWidth = 3; c.strokeStyle = C.surface; const lx = xc + (xc > TW - 90 ? -5 : 5);
+    c.strokeText(fmt(S.t), lx, y2a + 3); c.fillStyle = C.text; c.fillText(fmt(S.t), lx, y2a + 3); }
+  if (!A.length && !B.length) { c.fillStyle = C.dim; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '13px "DM Sans",sans-serif'; c.fillText('No samples for this variable at this pair', (L + TW - R) / 2, (y1a + y1b) / 2); }
+}
+function renderTrSummary() {
+  const p = PAIRS.find(q => q.key === TR.key), k = TR.param, diffs = pairDiffs(p, k), dec = 2, sg = v => Number.isFinite(v) ? (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(dec) : '–', f = v => Number.isFinite(v) ? v.toFixed(dec) : '–';
+  const unit = k === 'nit' ? ' mg/L' : '', noise = NOISE[k];
+  const groups = p.project ? [['Before construction', diffs.filter(r => r.t < p.t0)], ['During (the construction season)', diffs.filter(r => r.t >= p.t0 && r.t <= p.t1)], ['After construction', diffs.filter(r => r.t > p.t1)]] : [['All samples', diffs]];
+  const row = ([name, rows]) => rows.length || name === 'After construction' ? `<tr><td>${name}</td><td>${rows.length}</td><td>${f(med(rows.map(r => r.a)))}</td><td>${f(med(rows.map(r => r.b)))}</td><td><b>${sg(med(rows.map(r => r.d)))}</b></td></tr>` : '';
+  const bef = groups[0][1], aft = p.project ? groups[2][1] : [];
+  let verdict;
+  if (!p.project) verdict = `No dam-analog project is known at this pair, so it shows how far apart the two stations drift <b>by chance</b>: the median gap, ignoring sign, is ${f(noise)}${unit}. Anything at the project pairs smaller than that is not distinguishable from noise.`;
+  else if (!aft.length) verdict = `<b>No samples after construction yet</b>${diffs.length ? ` (the last paired sample is ${fmt(diffs[diffs.length - 1].t)})` : ''}. This pair cannot show a benefit yet.`;
+  else if (aft.length < 8) verdict = `<b>Only ${aft.length} paired sample${aft.length > 1 ? 's' : ''} after construction</b> (${fmtS(aft[0].t)} to ${fmt(aft[aft.length - 1].t)}). That is too few to separate a real change from ordinary sample-to-sample variation, and the &ldquo;before&rdquo; samples cover all seasons while the &ldquo;after&rdquo; ones cover only part of one summer. <b>These data cannot show a benefit, or a harm.</b>`;
+  else { const shift = med(aft.map(r => r.d)) - med(bef.map(r => r.d));
+    verdict = Math.abs(shift) <= noise ? `The shift in below &minus; above (${sg(shift)}${unit}) is no larger than the typical chance gap at pairs with no project (${f(noise)}${unit}), so these samples do not show an effect.`
+      : `Below &minus; above shifted by ${sg(shift)}${unit}, larger than the typical chance gap at pairs with no project (${f(noise)}${unit}). That is a lead, not proof: it is one site with no true untreated control.`; }
+  const hope = k === 'nit' ? 'A benefit would look like the bars falling below zero (below has less nitrate than above) after construction, and staying there across seasons and at more than one project.'
+                           : 'pH has no clear expected response to dam analogs. Watch whether either station leaves the 6.5–9 band, and whether below and above stay close together.';
+  $('trSum').innerHTML = `<table><thead><tr><th>Period</th><th>Paired samples</th><th>Median above</th><th>Median below</th><th>Median below &minus; above</th></tr></thead><tbody>${groups.map(row).join('')}</tbody></table>
+    <div class="verdict">${verdict}</div><div>${hope}</div>
+    <p class="watch">${p.project ? p.project.note + ' ' : ''}Samples are monthly grab samples, so a single day can be an outlier; the station pairs are 300 to 650 m apart. Nitrate is plotted as reported by the labs (mg/L; the form, as nitrogen or as nitrate, is not stated in the records).</p>`; }
+function renderTrSites() {
+  $('trSites').innerHTML = '<span class="lab">Project reach</span>';
+  PAIRS.forEach(p => { const b = document.createElement('button'); b.className = 'chip' + (p.key === TR.key ? ' on' : ''); b.setAttribute('aria-pressed', p.key === TR.key);
+    b.textContent = p.site + (p.project ? ' · ' + p.project.label.replace('Dam analogs built, ', 'built ') : ' · no project known');
+    b.onclick = () => { TR.key = p.key; renderTr(); }; $('trSites').appendChild(b); });
+  const z = document.createElement('button'); z.className = 'chip'; z.textContent = 'Show this reach on the map'; z.onclick = () => { focusPair(PAIRS.find(q => q.key === TR.key)); }; $('trSites').appendChild(z);
+  $('trKey').innerHTML = '<span><i style="background:var(--dim)"></i>above (upstream) station</span><span><i style="background:var(--accent)"></i>below (downstream) station</span><span>shaded band = construction season (exact dates not published)</span><span>dots on the map take the color of the latest sample</span>'; }
+function renderTr() { $('trTabNit').setAttribute('aria-selected', TR.param === 'nit'); $('trTabPh').setAttribute('aria-selected', TR.param === 'ph'); renderTrSites(); renderTrSummary(); dirty.tr = true; }
+$('trTabNit').onclick = () => { TR.param = 'nit'; renderTr(); }; $('trTabPh').onclick = () => { TR.param = 'ph'; renderTr(); };
+
 /* ---------- variables guide ---------- */
 const rossDays = PN.ross.reduce((n, s) => n + s.med.filter(v => v != null).length, 0), usgsDays = PN.usgs.reduce((n, s) => n + s.cfs.filter(v => v != null).length, 0);
 const nPerim = FIRE.filter(f => f.kind === 'mapped perimeter').length;
+const nfmt = n => Math.round(n).toLocaleString('en-US');
+const NIT_N = STN.reduce((n, x) => n + x.a.nit.length, 0), PH_N = STN.reduce((n, x) => n + x.a.ph.length, 0);
+const NIT_ST = STN.filter(x => x.a.nit.length).length, PH_ST = STN.filter(x => x.a.ph.length).length;
 const V = (name, tag, tagCls, plain, rows) => `<div class="var"><h3>${name}<span class="tag ${tagCls}">${tag}</span></h3><p class="plain">${plain}</p><dl>${rows.map(([k, v, w]) => `<dt>${k}</dt><dd${w ? ' class="warn"' : ''}>${v}</dd>`).join('')}</dl></div>`;
 const R = 'MEASURED OR MAPPED', D = 'DERIVED', MOD = 'ILLUSTRATIVE MODEL';
 $('guideBody').innerHTML = `
@@ -746,12 +912,33 @@ ${V('river color', D, 'derived', 'The color of each stretch of river on the map:
    ['Drawn as', 'colored line over the river; white dots drift downstream along colored reaches to show flow direction'],
    ['Watch out', 'This is interpolation, not measurement. Between sensors the real turbidity can differ, especially after storms or near canals and tributary inflows. In 2020 every sensor is on the lower river below the canyon, so the burned headwaters and tributaries are not colored. Little Beaver Creek’s sensor is left out of the coloring because it sits at the creek’s mouth.', true]])}
 </div>
+<div class="grp">Water-quality samples (nitrate and pH)</div><div class="vars">
+${V('nitrate', R, 'real', 'A form of nitrogen that plants and algae use as food. After a fire, burned soils can release extra nitrate and fewer plants remain to take it up, so burn-scar streams can carry more. Too much feeds algae that use up the oxygen fish need and can foul drinking-water supplies.',
+  [['Unit', 'mg/L, as reported by the labs'], ['Source', 'Water Quality Portal results from Colorado Dept. of Public Health & Environment, CPRW volunteers, Colorado River Watch, USGS and others'],
+   ['Coverage', `${nfmt(NIT_N)} sample-days at ${NIT_ST} stations, 2015 to 2025; ${WQ.n_burn} of the ${WQ.n_stations} stations (nitrate or pH) are inside the fire perimeter`],
+   ['Why it matters', 'The U.S. drinking-water limit is 10 mg/L as nitrogen. Slow, low-oxygen pond sediment lets bacteria turn nitrate into nitrogen gas, so beaver-style ponds are expected to lower it downstream. That is a hypothesis this page lets you look at, not a result.'],
+   ['Drawn as', 'map dots on a log scale (0.1 mg/L green to 30 mg/L or more near-black) and the paired chart (linear axis)'],
+   ['Watch out', 'Monthly grab samples, so one day can be an outlier. Values reported as nitrate (NO3) were converted to nitrogen; 56 non-detect or unreported results were left out. The records do not say whether most values are as nitrogen or as nitrate.', true]])}
+${V('pH', R, 'real', 'How acidic (below 7) or basic (above 7) the water is, on a log scale. Most stream life does best between about 6.5 and 9. Ash is alkaline and can push burn-scar water up; low pH can free metals such as aluminum and copper that harm fish, and pH changes how drinking-water treatment works.',
+  [['Unit', 'pH units'], ['Source', 'same Water Quality Portal records as nitrate'], ['Coverage', `${nfmt(PH_N)} sample-days at ${PH_ST} stations, 2015 to 2025`],
+   ['Drawn as', 'map dots: green anywhere inside 6.5 to 9, darker the farther outside it (only 38 of 1,469 results fall outside); the paired chart shades the 6.5 to 9 range'],
+   ['Watch out', 'There is no strong expectation that dam analogs change pH, so a flat pH is not evidence against them. It is mainly a check on whether the burn or the structures push water out of the usual range.', true]])}
+${V('above / below station pair', R, 'real', 'Two sampling stations on the same stream, one upstream and one downstream of a restoration reach, sampled on the same day.',
+  [['Source', 'CPRW volunteer monitoring, Water Quality Portal ("Above" and "Below" station names); coordinates from the station records'],
+   ['Pairs', 'Little Beaver Creek, South Fork Cache la Poudre and Sheep Creek (projects), plus Fish Creek, Lazy D and Ratville (no project known to me)'],
+   ['Drawn as', 'the chart: the two stations as lines, and below it a bar per sampling day for below minus above'],
+   ['Watch out', 'The project pages do not say whether the structures sit between the two stations (the South Fork page gives no location). The pairs are 300 to 650 m apart, so each one sees the same water except for whatever happens in between.', true]])}
+${V('construction season', R, 'real', 'When the dam analogs and other structures were built, as the project organizations describe it.',
+  [['Unit', 'a season, not a day'], ['Source', 'CPRW and Forest Service project pages, read in November 2026: Little Beaver Creek, Forest Service decision signed Sep 3, 2024, completed fall 2024; South Fork, September to November 2024; Sheep Creek, summer/fall 2025'],
+   ['Drawn as', 'the orange band on the chart; samples are split into before, during and after it'],
+   ['Watch out', 'Exact construction dates and structure locations are not published, so the band is a window, and samples inside it are not counted as before or after.', true]])}
+</div>
 <div class="grp">Measured water data</div><div class="vars">
 ${V('turbidity', R, 'real', 'How cloudy the water is, from light scattered by suspended sediment and ash. Higher means murkier water, which is a problem for drinking-water intakes.',
   [['Unit', 'NTU (nephelometric turbidity units)'], ['Source', 'CSU ROSS Poudre Water Quality Network, Aqua TROLL sondes, 15-minute readings, quality-controlled ("cleaned") product; DOI 10.4211/hs.521e317e189e498581d0aaa08c3f32bc, CC BY 4.0'],
    ['Coverage', `${PN.ross.length} sites, Sep 2019 to Nov 2025; ${nf(rossDays)} site-days. Most sites run only part of that span.`],
    ['Processing', 'daily median and daily max of valid readings, days with at least 6 hours of data (24 readings)'],
-   ['Drawn as', 'diamond color on the map and the river color (same green-to-dark scale, log, 1 to 1,000 NTU), plus the chart lines (log axis)'],
+   ['Drawn as', 'diamond color on the map, the optional river color (tick &ldquo;River turbidity&rdquo; in the legend; same green-to-dark scale, log, 1 to 1,000 NTU), and the chart lines (log axis)'],
    ['Watch out', '2019 to 2021 data predate the team&rsquo;s calibration procedures; optical sensors foul easily. Treat extremes cautiously. No sensor sits in the burned headwaters or at a beaver site for 2020, and the USGS reports turbidity in FNU from different sensors, so the two systems are not mixed.', true]])}
 ${V('upstream basin burned', D, 'derived', 'The share of a sensor&rsquo;s upstream drainage area that lies inside the final fire perimeter.',
   [['Unit', 'percent of basin area'], ['Source', 'basin polygons published with the ROSS dataset, intersected with the final perimeter'],
@@ -762,7 +949,7 @@ ${V('discharge', R, 'real', 'How much water is flowing past a gauge each day.',
    ['Watch out', 'About 15% of daily values carry the USGS "estimated" flag (11% during the fire window), about 1% are ice-affected and 6% are provisional. Gauges below Halligan and Joe Wright reservoirs show managed releases, not natural flow. Three gauges are in adjacent basins the fire also burned.', true]])}
 </div>`;
 
-$('note').innerHTML = `<b>How to read this.</b> Fire perimeters are the real mapped perimeters from NIFC; beaver icons are real records, not a census. <b>River color is measured turbidity</b> from CSU sensors, blended along the channel between them, so it is an interpolation: only the diamonds are actual readings. No beaver effect on turbidity or fire is shown or implied; this page lets you look, and it does not test it.`;
+$('note').innerHTML = `<b>How to read this.</b> Fire perimeters are the real mapped perimeters from NIFC; beaver icons are real records, not a census. Nitrate and pH dots are real lab samples from the Water Quality Portal. The optional river color (legend, off by default) is measured turbidity blended along the channel between CSU sensors, so only the diamonds are actual readings. The paired chart is built to let you look for a dam-analog benefit; with so few after-construction samples, it does not show one.`;
 
 /* ---------- page tabs: Animation / Limitations ---------- */
 function showView(v) { const lim = v === 'lim';
@@ -777,9 +964,10 @@ addEventListener('hashchange', () => showView(location.hash === '#limitations' ?
 /* ---------- boot ---------- */
 new ResizeObserver(() => { resize(); }).observe(stage);
 new ResizeObserver(() => { sizeChart(); }).observe($('measure'));
+new ResizeObserver(() => { sizeTr(); }).observe($('tracker'));
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readTheme);
 new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-readTheme(); resize(); sizeChart(); renderPick(); syncUI(); scaleBar(); setPlaying(false);
+readTheme(); resize(); sizeChart(); sizeTr(); renderTr(); renderPick(); syncUI(); scaleBar(); setPlaying(false);
 requestAnimationFrame(tick);
 if (location.hash === '#limitations') showView('lim');
 </script>

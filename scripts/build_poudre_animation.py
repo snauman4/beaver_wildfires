@@ -6,8 +6,9 @@ t = open('scripts/poudre_animation_template.html').read()
 d = open('data/poudre_animation.json').read()
 p = open('data/poudre_panel.json').read()
 cv = open('data/poudre_stream_cov.json').read()
-assert '/*DATA*/null' in t and '/*PANEL*/null' in t and '/*COV*/null' in t
-out = t.replace('/*DATA*/null', d).replace('/*PANEL*/null', p).replace('/*COV*/null', cv)
+wq = open('data/poudre_wq.json').read()
+assert '/*DATA*/null' in t and '/*PANEL*/null' in t and '/*COV*/null' in t and '/*WQ*/null' in t
+out = t.replace('/*DATA*/null', d).replace('/*PANEL*/null', p).replace('/*COV*/null', cv).replace('/*WQ*/null', wq)
 import os
 os.makedirs('outputs', exist_ok=True)
 for path in ('index.html', 'outputs/poudre_animation.html'):

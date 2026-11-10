@@ -288,3 +288,14 @@ The modeled "beaver influence" green gradient was removed from the animation. Ri
 - Scale (log NTU): <= 1 green, ~10 olive, ~100 brown, >= 1,000 near-black. Visual choice, not a regulatory threshold.
 - Potential coverage 227 km of river; on a given day only reaches near sensors with data are colored (17 km on Sep 14, 2020 with 3 sensors reporting; 139 km on Jul 1, 2025 with 16; none in winter).
 - `scripts/poudre_animation_data.R` still computes the old modeled influence (field `i` in `data/poudre_animation.json`), but the page no longer uses it.
+
+---
+
+## Nitrate and pH samples, and the above/below dam-analog tracker (2026-11-10)
+
+- **Pull:** Water Quality Portal, all providers, HUC8 10190007, 2015-01-01 to 2025-12-31, `characteristicName=Nitrate` and `pH`, narrowResult profile (4,999 results) plus the matching Station records, saved in `data/raw/wqp_poudre/`. Tidied by `scripts/poudre_wq_data.R` into `data/wq_nitrate_ph_samples.csv` (4,575 station-days, 132 stations, 39 inside the final fire perimeter) and `data/poudre_wq.json`.
+- **Cleaning:** 56 results without a numeric value (non-detect or not reported) dropped; 70 nitrate results reported "as NO3" converted to as-N (x 0.2259); same-day duplicates at a station averaged. The form of the remaining nitrate values (as N or as NO3) is not stated in the CPRW volunteer records.
+- **Pairs:** CPRW volunteer stations named "Above"/"Below" (Little Beaver Creek, South Fork, Sheep Creek, Fish Creek, Lazy D, Ratville), sampled about monthly from Dec 2021. Station descriptions are empty, so where the structures sit relative to each pair is not known.
+- **Project timing** (from CPRW and Forest Service pages, read Nov 2026; exact dates not published): Little Beaver Creek decision signed 2024-09-03, completed fall 2024; South Fork Sep-Nov 2024; Sheep Creek summer/fall 2025. These are drawn as seasons.
+- **What the data show:** Little Beaver has 22 paired samples before construction, 1 during, 3 after (Jul 25, Aug 27, Sep 19, 2025); South Fork 4 / 1 / 3; Sheep Creek 17 / 1 / 0. Median below-minus-above shifts are tiny (nitrate within 0.03 mg/L, pH within 0.09), and the median chance gap at pairs with no project known is 0.35 mg/L (nitrate) and 0.07 (pH). With 3 after-construction pairs no effect can be claimed or ruled out.
+- **Page changes:** nitrate/pH sample dots on the map, the paired tracker chart, guide entries, a Limitations section. The turbidity river color is now off by default.
