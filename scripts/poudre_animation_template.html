@@ -36,6 +36,24 @@
   --label:#c9d6cf; --halo:rgba(24,33,32,.85); --grid:#26322e;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
+.view{display:flex;flex-direction:column;gap:12px}
+.nav{display:flex;gap:4px;background:var(--chip);border-radius:12px;padding:4px;align-self:flex-start}
+.nav button{border:0;background:transparent;color:var(--dim);font:600 .9rem 'DM Sans',sans-serif;padding:9px 18px;border-radius:9px;cursor:pointer}
+.nav button[aria-selected=true]{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.lim{max-width:900px}
+.lim h2{margin:0 0 6px}
+.lim h3{margin:0 0 6px;font:600 1.02rem 'DM Sans',sans-serif}
+.lim p{font-size:.9rem;line-height:1.55;margin:0 0 8px;text-wrap:pretty}
+.lim ul{margin:0 0 4px;padding-left:1.15em;display:flex;flex-direction:column;gap:7px;font-size:.88rem;line-height:1.5}
+.lim li{text-wrap:pretty}
+.lim .src{font-size:.74rem;color:var(--dim)}
+.lim a{color:var(--accent)}
+.lim table{border-collapse:collapse;font-size:.8rem;width:100%;min-width:520px;margin:6px 0 4px}
+.lim th,.lim td{text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--border);vertical-align:top}
+.lim th{color:var(--dim);font-weight:600;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.callout{border-left:4px solid var(--fire-mid);background:var(--chip);border-radius:0 10px 10px 0;padding:12px 16px}
+.callout p{margin:0}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;
   padding-inline:16px;padding-block:16px 40px}
 .wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
@@ -139,6 +157,12 @@ details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--
     <p class="sub">Beaver records on the Cache la Poudre, the Cameron Peak Fire burning through the watershed in 2020, and the measured river turbidity and streamflow through 2025.</p>
   </header>
 
+  <div class="nav" role="tablist" aria-label="Page sections">
+    <button role="tab" id="navAnim" aria-selected="true">Animation</button>
+    <button role="tab" id="navLim" aria-selected="false">Limitations</button>
+  </div>
+
+<div class="view" id="viewAnim">
   <div class="stage" id="stage">
     <canvas id="map" aria-label="Animated map of the Cache la Poudre watershed" role="img"></canvas>
     <div class="hud"><div class="date" id="hudDate">Aug 1, 2020</div><div class="acres" id="hudAcres"></div></div>
@@ -205,6 +229,61 @@ details.guide>summary::after{content:'show / hide';font-size:.72rem;color:var(--
   </div>
 
   <p class="note" id="note"></p>
+</div>
+
+<section class="view lim" id="viewLim" hidden>
+  <div class="panel">
+    <h2>What this page can and cannot show</h2>
+    <p>This page puts beaver records, the Cameron Peak Fire, and measured river turbidity and flow side by side. It <b>cannot show when beaver dams or dam analogs were added</b>, and it <b>cannot show whether they changed turbidity</b>. The reason is missing data, not a choice: two gaps, described below, block that comparison. Nothing on the page is a made-up value, but several things are interpolated or incomplete, and they are listed here.</p>
+  </div>
+
+  <div class="panel">
+    <h3>1. Beaver and beaver dam analog (BDA) data</h3>
+    <ul>
+      <li><b>No installation or arrival dates.</b> The 5 dam records inside the watershed come from expert-mapped imagery datasets and carry no date at all; the mapping covers imagery from roughly 2014 to 2022. A dam on the map shows that one existed at some point in that span, not when it was built.</li>
+      <li><b>Sightings are not additions.</b> The 64 beaver sightings (GBIF and iNaturalist, 2018 to 2026) are dated by when someone saw an animal. They reflect where people look and photograph, cluster around Fort Collins and Greeley, and say nothing about when a beaver arrived or a dam was built. Dams can also outlast the beavers that built them.</li>
+      <li><b>Human-built BDAs exist, but are not in the data.</b> The Coalition for the Poudre River Watershed (CPRW) and the Forest Service have built post-fire BDAs and other structures in the burn area. Their project pages give timing only (table below). None gives coordinates, per-structure counts, or a downloadable map, and I did not place any from a place name.</li>
+      <li><b>No beaver release dataset was found.</b> Colorado Parks and Wildlife publishes guidance on beaver relocation, but I found no record of where or when beavers were released in the Poudre.</li>
+      <li><b>Verified BDAs are scarce overall.</b> The wider ground-truth database behind this project has only 35 confirmed BDAs, all in Oregon and located only to about 250 m. Colorado has none.</li>
+    </ul>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Project</th><th>Timing stated on the project page</th><th>Structures stated</th></tr></thead>
+      <tbody>
+        <tr><td>Little Beaver Creek</td><td>Forest Service decision signed Sep 3, 2024; &ldquo;Completed Fall 2024&rdquo;</td><td>not stated</td></tr>
+        <tr><td>South Fork Cache la Poudre</td><td>&ldquo;between September and November&rdquo; 2024</td><td>8 BDAs, South Fork and Little Beaver combined (63 structures of all kinds)</td></tr>
+        <tr><td>Lower Elkhorn Creek, Elkhorn at Richarz, Sheep Creek at Sleeping Elephant</td><td>&ldquo;Completed &ndash; Summer/Fall 2025&rdquo;</td><td>29 BDAs across the 2025 projects combined</td></tr>
+        <tr><td>Elkhorn Creek at Dall</td><td>phase 1 planned for summer 2026</td><td>not stated</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="src">Read from the CPRW and Forest Service project pages in November 2026: <a href="https://poudrewatershed.org/little-beaver-creek" target="_blank" rel="noopener">Little Beaver Creek</a>, <a href="https://www.fs.usda.gov/r02/arp/projects/66052" target="_blank" rel="noopener">Forest Service project record</a>, <a href="https://www.poudrewatershed.org/blog/2024-postfire-recap" target="_blank" rel="noopener">2024 recap</a>, <a href="https://www.poudrewatershed.org/blog/2025/10/29/post-fire-river-instream-recap-2025" target="_blank" rel="noopener">2025 recap</a>, <a href="https://www.poudrewatershed.org/dall" target="_blank" rel="noopener">Dall</a>. These are the organizations&rsquo; own descriptions and were not independently checked.</p>
+  </div>
+
+  <div class="panel">
+    <h3>2. Turbidity data</h3>
+    <ul>
+      <li><b>No USGS turbidity during the fire.</b> USGS had no turbidity record anywhere in the Poudre watershed in 2020. Its only river turbidity sensors are at Greeley and began in 2026; a Big Thompson sensor ran only in 2017 to 2019, before the fire.</li>
+      <li><b>The measured turbidity comes from one research network, and it is sparse in 2020.</b> The CSU ROSS sensors that cover the fire were all on the lower river below the canyon. Across the 112 days of the fire window only 1 to 5 of them reported on any day (2 or fewer on 43 of those days), and none were in the burned headwaters or at a beaver site. More sites were added from 2023 on.</li>
+      <li><b>Data quality is uneven.</b> The providers note that 2019 to 2021 data predate their calibration procedures, and that turbidity sensors foul easily, leaving gaps and doubtful extremes. The sensors are pulled for winter, so there is almost no data from about December to March.</li>
+      <li><b>The best before-and-after sites are not usable for it.</b> The Little Beaver Creek sensor ran only from late April to early October 2024, ending about when the structures there were finished. The South Fork sensor at Pingree Park Road ran from October 2023 to November 2025, spanning the fall 2024 work, but the project pages do not say whether the structures sit upstream of it.</li>
+      <li><b>River color is interpolated.</b> Only the diamond markers are actual readings. The color between them is a distance-weighted blend, carried at most 3 km past the last sensor and never up a tributary, so most of the watershed&rsquo;s streams are uncolored on any given day.</li>
+      <li><b>Drinking-water intake turbidity is out of reach.</b> Fort Collins Utilities reported post-fire turbidity at its intake, but I could only find it in charts and annual PDF reports, not as downloadable data.</li>
+      <li><b>Causes cannot be separated.</b> Even with dates and sensors, turbidity here also depends on storms, flow, the burn scar&rsquo;s recovery, and upstream inputs. A single before-and-after at one site could show a change but not who caused it.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>3. What would make the comparison possible</h3>
+    <ul>
+      <li>Dates <b>and coordinates</b> for each BDA or beaver release, for example from CPRW or Forest Service as-built maps, or from the researchers&rsquo; own field records.</li>
+      <li>Turbidity measured just above and just below the structures, both before and after they went in, ideally with a comparable untreated reach.</li>
+      <li>Raw turbidity records from Fort Collins Utilities and CSU&rsquo;s post-fire monitoring, which exist but are not in the public data used here.</li>
+    </ul>
+  </div>
+
+  <div class="callout"><p><b>Bottom line.</b> What you see is real: the fire&rsquo;s mapped perimeters, documented beaver records, and measured turbidity and flow. What you do not see is any record of when beaver structures arrived, so this page does not test whether they affected turbidity.</p></div>
+</section>
 </div>
 
 <script>
@@ -435,6 +514,7 @@ function drawGauge(c, g, z) { const x = SX(g.x), y = SY(g.y); if (x < -20 || y <
 
 /* ---------- main frame ---------- */
 function frame(now) {
+  if (W < 2 || H < 2) return;                      // animation tab hidden
   if (dirty.paths) rebuildPaths();
   if (dirty.streams) buildStreams();
   const day = Math.floor(S.t);
@@ -510,7 +590,7 @@ $('play').onclick = () => { if (!S.playing && S.t >= T_END) S.t = 0; setPlaying(
 $('speed').onchange = e => S.speed = +e.target.value;
 $('scrub').oninput = e => { S.t = tOf(+e.target.value / 1000); setPlaying(false); syncUI(); };
 [['lFire','fire'],['lStream','stream'],['lDam','dam'],['lSight','sight'],['lSens','sens'],['lGauge','gauge'],['lLab','lab']].forEach(([id, k]) => $(id).onchange = e => { S.show[k] = e.target.checked; markDirty(); });
-addEventListener('keydown', e => { if (e.code === 'Space' && e.target === document.body) { e.preventDefault(); $('play').click(); } });
+addEventListener('keydown', e => { if (e.code === 'Space' && e.target === document.body && !$('viewAnim').hidden) { e.preventDefault(); $('play').click(); } });
 
 /* ---------- measurements panel ---------- */
 const chart = $('chart'), cc = chart.getContext('2d'); let chartT = null, CW = 0, CH = 0;
@@ -526,6 +606,7 @@ const py = v => { const m = META[S.tab], l = Math.log10(clamp(v, m.lo, m.hi)); r
 function sizeChart() { const r = chart.getBoundingClientRect(); CW = r.width; CH = r.height; chart.width = Math.round(CW * DPR); chart.height = Math.round(CH * DPR); dirty.chart = true; }
 
 function drawChart() {
+  if (CW < 2 || CH < 2) return;
   chartT = S.t; dirty.chart = false; const c = cc, m = META[S.tab], sel = cur().filter(s => s.on);
   c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,CW,CH);
   const x0 = px(-W_PRE), x1 = px(1), yT = M.t, yB = CH - M.b;
@@ -683,6 +764,16 @@ ${V('discharge', R, 'real', 'How much water is flowing past a gauge each day.',
 
 $('note').innerHTML = `<b>How to read this.</b> Fire perimeters are the real mapped perimeters from NIFC; beaver icons are real records, not a census. <b>River color is measured turbidity</b> from CSU sensors, blended along the channel between them, so it is an interpolation: only the diamonds are actual readings. No beaver effect on turbidity or fire is shown or implied; this page lets you look, and it does not test it.`;
 
+/* ---------- page tabs: Animation / Limitations ---------- */
+function showView(v) { const lim = v === 'lim';
+  $('viewAnim').hidden = lim; $('viewLim').hidden = !lim;
+  $('navAnim').setAttribute('aria-selected', !lim); $('navLim').setAttribute('aria-selected', lim);
+  if (lim) setPlaying(false); else { resize(); sizeChart(); markDirty(); dirty.chart = true; }
+  try { history.replaceState(null, '', lim ? '#limitations' : location.pathname + location.search); } catch (e) {}
+  window.scrollTo(0, 0); }
+$('navAnim').onclick = () => showView('anim'); $('navLim').onclick = () => showView('lim');
+addEventListener('hashchange', () => showView(location.hash === '#limitations' ? 'lim' : 'anim'));
+
 /* ---------- boot ---------- */
 new ResizeObserver(() => { resize(); }).observe(stage);
 new ResizeObserver(() => { sizeChart(); }).observe($('measure'));
@@ -690,4 +781,5 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readTheme)
 new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 readTheme(); resize(); sizeChart(); renderPick(); syncUI(); scaleBar(); setPlaying(false);
 requestAnimationFrame(tick);
+if (location.hash === '#limitations') showView('lim');
 </script>
